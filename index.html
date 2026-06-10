@@ -11,17 +11,17 @@
 <meta name="author" content="Helion Events">
 <meta name="theme-color" content="#070605">
 
-<link rel="canonical" href="<!-- CANONICAL_URL -->">
+<link rel="canonical" href="https://maxdlg3.github.io/helion-events/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Helion Events">
 <meta property="og:title" content="Helion Events — Expériences Sensorielles Corporate Paris">
 <meta property="og:description" content="Saxophone live, vins d'un vigneron biodynamique, cocktails artisanaux. Des soirées d'entreprise dont vos invités parlent encore le lendemain.">
-<meta property="og:url" content="<!-- CANONICAL_URL -->">
-<meta property="og:image" content="<!-- OG_IMAGE_URL -->">
+<meta property="og:url" content="https://maxdlg3.github.io/helion-events/">
+<meta property="og:image" content="https://maxdlg3.github.io/helion-events/images/hero.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Helion Events">
-<meta name="twitter:image" content="<!-- OG_IMAGE_URL -->">
+<meta name="twitter:image" content="https://maxdlg3.github.io/helion-events/images/hero.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,8 +36,8 @@
   "@type": "Organization",
   "name": "Helion Events",
   "description": "Expériences événementielles corporate à Paris : saxophone live, dégustation de vins biodynamiques, cocktails artisanaux sur mesure.",
-  "url": "<!-- CANONICAL_URL -->",
-  "email": "<!-- EMAIL -->",
+  "url": "https://maxdlg3.github.io/helion-events/",
+  "email": "contact@helionsax.com",
   "telephone": "<!-- PHONE -->",
   "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
   "sameAs": ["https://helionsax.com"]
@@ -289,12 +289,17 @@ button { cursor: none; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 100% 80% at 70% 30%, #1c1308 0%, #070605 65%);
+  background-image: url('images/hero.jpg');
+  background-size: cover;
+  background-position: center 40%;
   will-change: transform;
 }
-/* Décommentez pour la vraie photo :
-.hero-bg { background-image: url('images/hero.jpg'); background-size: cover; background-position: center; }
-.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,6,5,0.88) 0%, rgba(7,6,5,0.5) 50%, rgba(7,6,5,0.2) 100%); } */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(7,6,5,0.9) 0%, rgba(7,6,5,0.6) 55%, rgba(7,6,5,0.25) 100%);
+}
 
 .hero-body {
   position: relative;
@@ -693,8 +698,7 @@ button { cursor: none; }
   position: relative;
 }
 .gp:hover { border-color: rgba(196,149,106,0.45); }
-.gp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s; }
-.gp.loaded img { opacity: 1; }
+.gp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.5s; }
 
 .gp-1 { grid-column: 1 / 8;  grid-row: 1 / 7; }
 .gp-2 { grid-column: 8 / 13; grid-row: 1 / 9; }
@@ -1151,21 +1155,12 @@ button { cursor: none; }
 
       <div class="musique-media fade">
         <div class="musique-video-wrap">
-          <!--
-            YOUTUBE_EMBED_1
-            Remplacez ce bloc par :
-            <iframe width="100%" height="100%" style="position:absolute;inset:0;"
-              src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0"
-              title="Helion Sax live" frameborder="0"
-              allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
-            </iframe>
-          -->
-          <div class="video-placeholder-inner">
-            <div class="play-ring">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-            </div>
-            Vidéo live à venir
-          </div>
+          <iframe width="100%" height="100%" style="position:absolute;inset:0;border:none;"
+            src="https://www.youtube-nocookie.com/embed/SSJ2jmSnPd4?rel=0&modestbranding=1"
+            title="Helion Sax — saxophone live" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy">
+          </iframe>
         </div>
         <p class="musique-credit">Saxophone &amp; DJ Set</p>
       </div>
@@ -1277,41 +1272,28 @@ button { cursor: none; }
     </div>
 
     <div class="gal">
-      <figure class="gp gp-1 fade" role="img" aria-label="Photo 1 — ambiance soirée">
-        <!-- PHOTO_1 : large paysage, ambiance soirée -->
-        Photo 1
+      <figure class="gp gp-1 fade" role="img" aria-label="Performance en club parisien">
+        <img src="images/gal-1.jpg" alt="Saxophoniste en performance dans un club parisien" loading="lazy">
       </figure>
-      <figure class="gp gp-2 fade d1" role="img" aria-label="Photo 2 — portrait">
-        <!-- PHOTO_2 -->
-        Photo 2
+      <figure class="gp gp-2 fade d1" role="img" aria-label="Saxophone sur la Seine au coucher de soleil">
+        <img src="images/gal-2.jpg" alt="Max joue du saxophone sur une péniche, pont au Change et la Conciergerie en arrière-plan" loading="lazy">
       </figure>
-      <figure class="gp gp-3 fade d1" role="img" aria-label="Photo 3">
-        <!-- PHOTO_3 -->
-        Photo 3
+      <figure class="gp gp-3 fade d1" role="img" aria-label="Soirée privée">
+        <img src="images/gal-3.jpg" alt="Ambiance soirée privée avec saxophone live" loading="lazy">
       </figure>
-      <figure class="gp gp-4 fade d2" role="img" aria-label="Photo 4">
-        <!-- PHOTO_4 -->
-        Photo 4
+      <figure class="gp gp-4 fade d2" role="img" aria-label="Soirée dansante">
+        <img src="images/gal-4.jpg" alt="Invités dansant autour du saxophoniste lors d'une soirée corporate" loading="lazy">
       </figure>
-      <figure class="gp gp-5 fade d2" role="img" aria-label="Photo 5">
-        <!-- PHOTO_5 -->
-        Photo 5
+      <figure class="gp gp-5 fade d2" role="img" aria-label="Événement sur les quais de Paris">
+        <img src="images/gal-5.jpg" alt="Événement musical sur les quais de Paris" loading="lazy">
       </figure>
-      <figure class="gp gp-v fade d1" role="img" aria-label="Vidéo ambiance">
-        <!--
-          YOUTUBE_EMBED_2
-          Remplacez par :
-          <iframe width="100%" height="100%" style="position:absolute;inset:0;border:none;"
-            src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0"
-            title="Helion Events ambiance" allowfullscreen loading="lazy">
-          </iframe>
-        -->
-        <div style="display:flex;align-items:center;gap:0.8rem;flex-direction:column">
-          <div class="play-ring" style="width:44px;height:44px">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-          </div>
-          <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">Vidéo ambiance à venir</span>
-        </div>
+      <figure class="gp gp-v fade d1" role="img" aria-label="Vidéo ambiance saxophone">
+        <iframe width="100%" height="100%" style="position:absolute;inset:0;border:none;"
+          src="https://www.youtube-nocookie.com/embed/omsskrxWOqE?rel=0&modestbranding=1"
+          title="Helion Events — ambiance saxophone live Paris" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy">
+        </iframe>
       </figure>
     </div>
 
@@ -1419,13 +1401,9 @@ button { cursor: none; }
           Dites-nous ce que vous avez en tête. La date, le nombre d'invités, le type d'événement. Nous revenons vers vous sous 48h avec une première approche construite pour votre contexte.
         </p>
         <div class="contact-info fade d2">
-          <a href="mailto:<!-- EMAIL -->">
+          <a href="mailto:contact@helionsax.com">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <!-- EMAIL -->
-          </a>
-          <a href="tel:<!-- PHONE -->">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.42 2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <!-- PHONE -->
+            contact@helionsax.com
           </a>
           <a href="https://helionsax.com" target="_blank" rel="noopener noreferrer">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
@@ -1435,8 +1413,7 @@ button { cursor: none; }
       </div>
 
       <div class="fade d1">
-        <!-- FORM_ACTION : remplacez action="" par votre endpoint (ex: Formspree) -->
-        <form class="form" action="<!-- FORM_ACTION -->" method="POST" id="contact-form" aria-label="Formulaire de demande de devis" novalidate>
+        <form class="form" action="https://formspree.io/f/<!-- FORM_ID -->" method="POST" id="contact-form" aria-label="Formulaire de demande de devis" novalidate>
 
           <div class="form-row">
             <div class="fg">
