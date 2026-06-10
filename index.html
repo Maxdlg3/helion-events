@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helion Events — Expériences Sensorielles Corporate · Paris</title>
+<meta name="description" content="Helion Events crée des soirées d'entreprise mémorables à Paris : saxophone live, set DJ, dégustation de vins avec un vigneron biodynamique, cocktails artisanaux sur mesure.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="keywords" content="événement entreprise Paris, animation musicale corporate, saxophoniste soirée entreprise, dégustation vin événement entreprise, expérience sensorielle corporate, soirée sur mesure Paris">
+<meta name="author" content="Helion Events">
+<meta name="theme-color" content="#070605">
+
+<link rel="canonical" href="<!-- CANONICAL_URL -->">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Helion Events">
+<meta property="og:title" content="Helion Events — Expériences Sensorielles Corporate Paris">
+<meta property="og:description" content="Saxophone live, vins d'un vigneron biodynamique, cocktails artisanaux. Des soirées d'entreprise dont vos invités parlent encore le lendemain.">
+<meta property="og:url" content="<!-- CANONICAL_URL -->">
+<meta property="og:image" content="<!-- OG_IMAGE_URL -->">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Helion Events">
+<meta name="twitter:image" content="<!-- OG_IMAGE_URL -->">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap"></noscript>
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Helion Events",
+  "description": "Expériences événementielles corporate à Paris : saxophone live, dégustation de vins biodynamiques, cocktails artisanaux sur mesure.",
+  "url": "<!-- CANONICAL_URL -->",
+  "email": "<!-- EMAIL -->",
+  "telephone": "<!-- PHONE -->",
+  "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
+  "sameAs": ["https://helionsax.com"]
+}
+</script>
+
+<style>
+/* ============================================================ VARIABLES */
+:root {
+  --ink:      #070605;
+  --ink-2:    #0d0b09;
+  --ink-3:    #141210;
+  --gold:     #c4956a;
+  --gold-dim: rgba(196,149,106,0.15);
+  --line:     rgba(196,149,106,0.2);
+  --cream:    #f0ebe2;
+  --muted:    #7a7268;
+  --f-serif:  'Cormorant Garamond', Georgia, serif;
+  --f-sans:   'Inter', system-ui, sans-serif;
+  --ease:     cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================ RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--f-sans);
+  font-weight: 300;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; height: auto; }
+button { cursor: none; }
+
+/* ============================================================ CURSOR */
+.cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease), height 0.3s var(--ease), opacity 0.3s;
+  will-change: transform;
+}
+.cursor.hover {
+  width: 40px; height: 40px;
+  background: transparent;
+  border: 1px solid var(--gold);
+}
+.cursor.hidden { opacity: 0; }
+
+/* ============================================================ PRELOADER */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s var(--ease), visibility 0.8s;
+}
+.preloader.done { opacity: 0; visibility: hidden; }
+.preloader-inner {
+  text-align: center;
+  overflow: hidden;
+}
+.preloader-word {
+  font-family: var(--f-serif);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  transform: translateY(100%);
+  transition: transform 0.9s var(--ease-out);
+}
+.preloader-word.visible { transform: translateY(0); }
+.preloader-bar {
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem auto 0;
+  transition: width 1.2s var(--ease);
+}
+.preloader-bar.full { width: 100%; }
+
+/* ============================================================ NAVIGATION */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+  transition: padding 0.5s var(--ease), background 0.5s;
+  mix-blend-mode: normal;
+}
+.nav.scrolled {
+  padding: 1.2rem clamp(1.5rem, 5vw, 4rem);
+  background: rgba(7,6,5,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-logo {
+  font-family: var(--f-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+.nav-logo em { font-style: italic; color: var(--gold); }
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.nav-menu a {
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.5rem 0.9rem;
+  border-radius: 2px;
+  transition: color 0.25s;
+}
+.nav-menu a:hover { color: var(--cream); }
+.nav-menu .nav-main-cta {
+  color: var(--gold);
+  border: 1px solid var(--line);
+  transition: background 0.25s, color 0.25s;
+}
+.nav-menu .nav-main-cta:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.burger span {
+  display: block;
+  width: 22px; height: 1px;
+  background: var(--cream);
+  transition: transform 0.35s var(--ease), opacity 0.25s;
+}
+.burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--ink);
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 clamp(2rem, 8vw, 6rem);
+  gap: 0.5rem;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-family: var(--f-serif);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+  padding: 0.3rem 0;
+}
+.mobile-nav a:hover { color: var(--cream); }
+.mobile-nav a.gold { color: var(--gold); }
+
+/* ============================================================ LAYOUT */
+.w { max-width: 1280px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+
+.s { padding: clamp(6rem, 11vw, 10rem) 0; }
+
+/* ============================================================ TYPE */
+.label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.rule {
+  display: block;
+  width: 32px; height: 1px;
+  background: var(--gold);
+  margin: 1rem 0 1.5rem;
+}
+
+/* Animated headline lines */
+.headline-wrap { overflow: hidden; }
+.headline-line {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.9s var(--ease-out);
+}
+.headline-line.in { transform: translateY(0); }
+.headline-line:nth-child(2) { transition-delay: 0.08s; }
+.headline-line:nth-child(3) { transition-delay: 0.16s; }
+.headline-line:nth-child(4) { transition-delay: 0.24s; }
+
+/* Fade reveals */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.fade.in { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.35s; }
+.d4 { transition-delay: 0.5s; }
+
+/* ============================================================ HERO */
+.hero {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Remplacez background par une vraie photo quand disponible :
+   background-image: url('images/hero.jpg'); background-size: cover; background-position: center; */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 80% at 70% 30%, #1c1308 0%, #070605 65%);
+  will-change: transform;
+}
+/* Décommentez pour la vraie photo :
+.hero-bg { background-image: url('images/hero.jpg'); background-size: cover; background-position: center; }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,6,5,0.88) 0%, rgba(7,6,5,0.5) 50%, rgba(7,6,5,0.2) 100%); } */
+
+.hero-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: clamp(4rem, 7vw, 6rem);
+  padding-top: 120px;
+}
+
+.hero-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.hero-eyebrow-row::before {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--gold);
+}
+
+.hero-h1 {
+  font-family: var(--f-serif);
+  font-weight: 300;
+  font-size: clamp(4rem, 10.5vw, 10rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+.hero-h1 span.light { font-weight: 300; }
+
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-sub {
+  max-width: 400px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream);
+  border: 1px solid var(--line);
+  padding: 1.1rem 2.4rem;
+  border-radius: 1px;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease);
+  z-index: -1;
+}
+.hero-cta:hover::before { transform: scaleX(1); }
+.hero-cta:hover { color: var(--ink); border-color: var(--gold); }
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  right: clamp(1.5rem, 5vw, 4rem);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+  50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+}
+
+/* ============================================================ MARQUEE */
+.marquee-strip {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 1.1rem 0;
+  overflow: hidden;
+  background: var(--ink-2);
+}
+.marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.marquee-dot {
+  width: 4px; height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================ CONCEPT */
+.concept-intro-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(3rem, 7vw, 6rem);
+  align-items: start;
+  margin-bottom: clamp(5rem, 9vw, 8rem);
+}
+.concept-number {
+  font-family: var(--f-serif);
+  font-size: clamp(6rem, 14vw, 12rem);
+  font-weight: 300;
+  color: rgba(196,149,106,0.06);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  margin-bottom: -2rem;
+}
+.concept-h2 {
+  font-family: var(--f-serif);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.concept-h2 em { font-style: italic; color: var(--gold); }
+
+.concept-right { padding-top: 1rem; }
+.concept-right p { color: var(--muted); font-size: 1rem; line-height: 1.85; max-width: 520px; }
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+}
+.pillar {
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: background 0.4s;
+}
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: rgba(196,149,106,0.03); }
+
+.pillar-num { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); }
+.pillar-title {
+  font-family: var(--f-serif);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.pillar-body { font-size: 0.88rem; color: var(--muted); line-height: 1.85; }
+
+.pillar-icon { color: var(--gold); opacity: 0.6; }
+
+/* ============================================================ MUSIQUE */
+.musique { background: var(--ink-2); }
+
+.musique-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.musique-media {
+  position: relative;
+}
+.musique-video-wrap {
+  position: relative;
+  aspect-ratio: 9/14;
+  max-width: 380px;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.video-placeholder-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.play-ring {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+}
+
+.musique-credit {
+  position: absolute;
+  bottom: -1.5rem;
+  right: 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.musique-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.section-h {
+  font-family: var(--f-serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+.section-h em { font-style: italic; color: var(--gold); }
+
+.musique-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.85; }
+
+.bio-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--line);
+}
+.bio-line-tick {
+  width: 20px; height: 1px;
+  background: var(--gold);
+  margin-top: 0.7rem;
+  flex-shrink: 0;
+}
+.bio-line p {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ============================================================ SAVEURS */
+.saveurs-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 5rem);
+  align-items: end;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.saveurs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+
+.saveur {
+  background: var(--ink);
+  padding: clamp(2.5rem, 5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.saveur-img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+.saveur-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.saveur-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.saveur h3 {
+  font-family: var(--f-serif);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+.saveur p { font-size: 0.88rem; color: var(--muted); line-height: 1.85; }
+
+/* ============================================================ GALERIE */
+.galerie { background: var(--ink-2); }
+
+.galerie-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.galerie-header-right {
+  max-width: 260px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.7;
+}
+
+/* Masonry asymétrique */
+.gal {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 60px;
+  gap: 8px;
+}
+
+.gp {
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: border-color 0.35s;
+  position: relative;
+}
+.gp:hover { border-color: rgba(196,149,106,0.45); }
+.gp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s; }
+.gp.loaded img { opacity: 1; }
+
+.gp-1 { grid-column: 1 / 8;  grid-row: 1 / 7; }
+.gp-2 { grid-column: 8 / 13; grid-row: 1 / 9; }
+.gp-3 { grid-column: 1 / 5;  grid-row: 7 / 13; }
+.gp-4 { grid-column: 5 / 9;  grid-row: 7 / 13; }
+.gp-5 { grid-column: 9 / 13; grid-row: 9 / 15; }
+.gp-v { grid-column: 1 / 9;  grid-row: 13 / 22; min-height: 200px; }
+
+/* ============================================================ FORMULES */
+.formules-heading {
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+.formules-heading h2 {
+  font-family: var(--f-serif);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+}
+.formules-heading h2 em { font-style: italic; color: var(--gold); }
+.formules-heading p { color: var(--muted); font-size: 0.9rem; margin-top: 1.2rem; max-width: 480px; }
+
+.formules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+
+.fc {
+  background: var(--ink);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  position: relative;
+  transition: background 0.4s;
+}
+.fc:hover { background: var(--ink-2); }
+
+.fc.star { background: var(--ink-2); }
+.fc.star::after {
+  content: 'Le plus demandé';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--line);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+.fc-bg-num {
+  font-family: var(--f-serif);
+  font-size: clamp(5rem, 9vw, 7.5rem);
+  font-weight: 300;
+  color: rgba(196,149,106,0.06);
+  line-height: 1;
+  user-select: none;
+}
+
+.fc-name {
+  font-family: var(--f-serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.fc-name em { display: block; font-style: italic; color: var(--gold); font-weight: 300; font-size: 0.85em; }
+
+.fc p { font-size: 0.88rem; color: var(--muted); line-height: 1.85; flex: 1; }
+
+.fc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.fc-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.fc-list li::before {
+  content: '';
+  display: block;
+  width: 18px; height: 1px;
+  background: var(--gold);
+  margin-top: 0.65rem;
+  flex-shrink: 0;
+}
+
+.fc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: auto;
+  padding-top: 0.5rem;
+  transition: gap 0.3s;
+}
+.fc:hover .fc-link { gap: 1rem; }
+
+/* ============================================================ CONTACT */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 4fr 8fr;
+  gap: clamp(4rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.contact-left { display: flex; flex-direction: column; gap: 2rem; }
+
+.contact-h {
+  font-family: var(--f-serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+}
+.contact-h em { font-style: italic; color: var(--gold); }
+
+.contact-sub { font-size: 0.9rem; color: var(--muted); line-height: 1.85; }
+
+.contact-info {
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.contact-info a {
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  transition: color 0.2s;
+}
+.contact-info a:hover { color: var(--gold); }
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+.fg {
+  background: var(--ink-2);
+  display: flex;
+  flex-direction: column;
+}
+.fg label {
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 1.2rem 1.5rem 0;
+}
+.fg input, .fg select, .fg textarea {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--cream);
+  font-family: var(--f-sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  padding: 0.5rem 1.5rem 1.2rem;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.fg input::placeholder, .fg textarea::placeholder { color: rgba(122,114,104,0.5); }
+.fg select option { background: var(--ink-3); }
+.fg textarea { resize: vertical; min-height: 110px; }
+
+.form-foot {
+  background: var(--ink-2);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.form-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 1px;
+  transition: background 0.25s, transform 0.25s;
+}
+.btn-send:hover { background: #d4a87a; transform: translateY(-1px); }
+
+/* ============================================================ FOOTER */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+.footer-logo {
+  font-family: var(--f-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+.footer-logo em { font-style: italic; color: var(--gold); }
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--cream); }
+
+.footer-right {
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ============================================================ RESPONSIVE */
+@media (max-width: 1024px) {
+  .concept-intro-grid { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--line); }
+  .pillar:last-child { border-bottom: none; }
+  .musique-grid { grid-template-columns: 1fr; }
+  .saveurs-intro { grid-template-columns: 1fr; }
+  .saveurs-grid { grid-template-columns: 1fr; }
+  .formules-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-links { display: none; }
+  .gal { grid-template-columns: 1fr 1fr; grid-auto-rows: 50px; }
+  .gp-1, .gp-2, .gp-3, .gp-4, .gp-5 { grid-column: auto; grid-row: auto; }
+  .gp-1 { grid-column: 1/3; grid-row: span 5; }
+  .gp-2, .gp-3, .gp-4, .gp-5 { grid-column: span 1; grid-row: span 5; }
+  .gp-v { grid-column: 1/-1; grid-row: span 6; }
+}
+
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .cursor { display: none; }
+  .nav-menu { display: none; }
+  .burger { display: flex; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; }
+  .galerie-header { flex-direction: column; align-items: flex-start; }
+  .galerie-header-right { text-align: left; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .footer-right { text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader-inner">
+    <div class="preloader-word" id="preloader-word">Helion <em style="font-style:italic;color:var(--gold)">Events</em></div>
+    <div class="preloader-bar" id="preloader-bar"></div>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav" role="banner">
+  <a href="#" class="nav-logo">Helion <em>Events</em></a>
+  <ul class="nav-menu" role="list">
+    <li><a href="#concept">Concept</a></li>
+    <li><a href="#musique">Musique</a></li>
+    <li><a href="#saveurs">Saveurs</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#formules">Formules</a></li>
+    <li><a href="#contact" class="nav-main-cta">Construire votre soirée</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Menu">
+  <a href="#concept"  onclick="closeMobile()">Concept</a>
+  <a href="#musique"  onclick="closeMobile()">Musique</a>
+  <a href="#saveurs"  onclick="closeMobile()">Saveurs</a>
+  <a href="#galerie"  onclick="closeMobile()">Galerie</a>
+  <a href="#formules" onclick="closeMobile()">Formules</a>
+  <a href="#contact"  onclick="closeMobile()" class="gold">Construire votre soirée</a>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="hero" aria-label="Helion Events">
+  <div class="hero-bg" id="hero-bg"></div>
+
+  <div class="hero-body w">
+    <div class="hero-eyebrow-row fade" id="hero-e">
+      <span class="label">Paris · Expériences Corporates</span>
+    </div>
+
+    <h1 class="hero-h1">
+      <div class="headline-wrap"><span class="headline-line" data-reveal>Ce que vos</span></div>
+      <div class="headline-wrap"><span class="headline-line" data-reveal>invités ne</span></div>
+      <div class="headline-wrap"><em class="headline-line" data-reveal>s'attendaient pas</em></div>
+      <div class="headline-wrap"><span class="headline-line" data-reveal>à ressentir.</span></div>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-sub fade d2">
+        Saxophone live, vins d'un vigneron biodynamique, cocktails artisanaux. Des soirées d'entreprise qui laissent une vraie trace.
+      </p>
+      <a href="#contact" class="hero-cta fade d3">
+        Construire votre soirée
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+    Défiler
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- Dupliqué pour boucle infinie -->
+    <div class="marquee-item"><div class="marquee-dot"></div>Saxophone Live</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Vins Biodynamiques</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Cocktails Artisanaux</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Paris</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Sur Mesure</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Expériences Sensorielles</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>DJ Set</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Corporate</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Saxophone Live</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Vins Biodynamiques</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Cocktails Artisanaux</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Paris</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Sur Mesure</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Expériences Sensorielles</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>DJ Set</div>
+    <div class="marquee-item"><div class="marquee-dot"></div>Corporate</div>
+  </div>
+</div>
+
+<!-- ==================== CONCEPT ==================== -->
+<section class="s" id="concept" aria-labelledby="concept-h">
+  <div class="w">
+
+    <div class="concept-intro-grid">
+      <div>
+        <div class="concept-number fade" aria-hidden="true">01</div>
+        <p class="label fade">Le Concept</p>
+        <span class="rule fade d1"></span>
+        <h2 class="concept-h2 fade d1" id="concept-h">
+          Une formule<br>en trois<br><em>dimensions.</em>
+        </h2>
+      </div>
+      <div class="concept-right fade d2">
+        <p>
+          La plupart des soirées d'entreprise se ressemblent. Elles commencent bien, se diluent après le dîner et finissent tôt. Helion Events a été construit pour que ça ne se passe pas comme ça.
+        </p>
+        <p style="margin-top:1.2rem">
+          Pas un prestataire de plus assemblé à la dernière minute. Une expérience construite de A à Z autour de trois piliers qui se répondent, portée par une équipe qui travaille ensemble depuis des années.
+        </p>
+      </div>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar fade">
+        <p class="pillar-num">01</p>
+        <svg class="pillar-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <h3 class="pillar-title">Musique Live</h3>
+        <p class="pillar-body">
+          Pas une playlist en fond. Un set construit pour la soirée, un saxophone qui circule dans la salle, une énergie qui monte et descend selon ce qu'il faut. La différence entre de la musique et une présence musicale se mesure dans la façon dont les gens restent.
+        </p>
+      </div>
+      <div class="pillar fade d1">
+        <p class="pillar-num">02</p>
+        <svg class="pillar-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 22V12M16 22V12M3 12c3.6-3 6-5 9-9 3 4 5.4 6 9 9M3 12h18"/></svg>
+        <h3 class="pillar-title">Vins de Vigneron</h3>
+        <p class="pillar-body">
+          Une dégustation animée par quelqu'un qui travaille la vigne avec ses mains, pas par quelqu'un qui a appris à parler de vin. Terroirs, saisons, biodynamie. Ce n'est pas une prestation, c'est une rencontre. Vos invités repartent avec quelque chose de concret.
+        </p>
+      </div>
+      <div class="pillar fade d2">
+        <p class="pillar-num">03</p>
+        <svg class="pillar-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 12h14M5 12a7 7 0 0 0 14 0"/><path d="M8.5 8V5M15.5 8V5"/></svg>
+        <h3 class="pillar-title">Cocktails Artisanaux</h3>
+        <p class="pillar-body">
+          Des menus construits autour d'une marque, d'un thème, d'une saison. Spiritueux sélectionnés, gestes maîtrisés, rien de préfabriqué. Un bar qui est un atelier, pas un poste de service. Vos invités le voient travailler, et c'est une partie du spectacle.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== MUSIQUE ==================== -->
+<section class="s musique" id="musique" aria-labelledby="musique-h">
+  <div class="w">
+    <div class="musique-grid">
+
+      <div class="musique-media fade">
+        <div class="musique-video-wrap">
+          <!--
+            YOUTUBE_EMBED_1
+            Remplacez ce bloc par :
+            <iframe width="100%" height="100%" style="position:absolute;inset:0;"
+              src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0"
+              title="Helion Sax live" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+            </iframe>
+          -->
+          <div class="video-placeholder-inner">
+            <div class="play-ring">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+            Vidéo live à venir
+          </div>
+        </div>
+        <p class="musique-credit">Saxophone &amp; DJ Set</p>
+      </div>
+
+      <div class="musique-text">
+        <div class="fade">
+          <p class="label">La Musique</p>
+          <span class="rule"></span>
+          <h2 class="section-h" id="musique-h">
+            Le son qui<br><em>tient la salle.</em>
+          </h2>
+        </div>
+        <p class="fade d1">
+          Au coeur de chaque événement Helion, il y a un musicien qui comprend l'énergie d'une salle et sait la construire dans le temps. Saxophone live à l'accueil, set DJ qui monte progressivement, passages hybrides qui surprennent sans décrocher.
+        </p>
+        <p class="fade d2" style="color:var(--muted);font-size:0.88rem">
+          Ce n'est pas une formule appliquée, c'est une lecture de la pièce en temps réel. Chaque soirée est différente parce que chaque groupe l'est aussi. L'énergie se construit, jamais imposée.
+        </p>
+        <div class="bio-line fade d3">
+          <div class="bio-line-tick"></div>
+          <p>Caveaux de jazz parisiens, clubs branchés, festivals, mariages haut de gamme et événements corporate. Une présence scénique construite sur des années de terrain, pas un catalogue de prestations.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SAVEURS ==================== -->
+<section class="s" id="saveurs" aria-labelledby="saveurs-h">
+  <div class="w">
+
+    <div class="saveurs-intro">
+      <div class="fade">
+        <p class="label">Les Saveurs</p>
+        <span class="rule"></span>
+        <h2 class="section-h" id="saveurs-h">
+          Deux façons<br>de surprendre<br><em>le palais.</em>
+        </h2>
+      </div>
+      <p class="fade d1" style="color:var(--muted);font-size:0.9rem;line-height:1.85;max-width:420px;padding-top:1rem">
+        La musique ouvre la soirée. Ce qu'on boit et ce qu'on déguste lui donne son épaisseur. Nous travaillons avec deux univers distincts, chacun avec son propre niveau d'exigence.
+      </p>
+    </div>
+
+    <div class="saveurs-grid">
+
+      <div class="saveur fade">
+        <div class="saveur-img">
+          <!-- PHOTO_THEOPHILE
+               Remplacez par :
+               <img src="images/theophile-jourdier.jpg"
+                    alt="Théophile Jourdier, vigneron au Domaine Cécile Tremblay, Morey-Saint-Denis"
+                    loading="lazy"> -->
+          Photo Théophile Jourdier
+        </div>
+        <span class="saveur-tag">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5.4 8 14 8 14s8-8.6 8-14a8 8 0 0 0-8-8z"/></svg>
+          Domaine Cécile Tremblay · Morey-Saint-Denis
+        </span>
+        <h3>Vins de vigneron<br>biodynamique.</h3>
+        <p>
+          Théophile Jourdier travaille les vignes du Domaine Cécile Tremblay en biodynamie à Morey-Saint-Denis, au coeur de la Côte de Nuits. Des parcelles Grand Cru, cultivées sans compromis, vendangées à la main.
+        </p>
+        <p>
+          Quand il anime une dégustation, il n'explique pas le vin. Il raconte la vigne, les saisons, les choix qu'on fait quand on cultive avec soin. Sans prétention, avec une profondeur rare. Ce que vos invités ressentent, c'est l'authenticité d'un vrai producteur qui partage son travail.
+        </p>
+      </div>
+
+      <div class="saveur fade d1">
+        <div class="saveur-img">
+          <!-- PHOTO_COCKTAILS
+               Remplacez par :
+               <img src="images/cocktails.jpg"
+                    alt="Bartender préparant un cocktail artisanal sur mesure"
+                    loading="lazy"> -->
+          Photo bar cocktails
+        </div>
+        <span class="saveur-tag">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2h8l-4 7h4l-8 13 2-8H6z"/></svg>
+          Bartenders formés · Menus sur mesure
+        </span>
+        <h3>Un bar qui<br>est un atelier.</h3>
+        <p>
+          Nos bartenders ne servent pas des cocktails, ils en construisent. Chaque menu est pensé autour de votre événement : votre marque, votre thème, la saison, l'envie. Spiritueux premium sélectionnés, associations inattendues, gestes maîtrisés.
+        </p>
+        <p>
+          Un poste de bar qui est aussi visuel. Vos invités regardent, posent des questions, se souviennent de ce qu'ils ont bu. C'est une partie intégrante de l'expérience, pas un service en retrait.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GALERIE ==================== -->
+<section class="s galerie" id="galerie" aria-label="Galerie Helion Events">
+  <div class="w">
+
+    <div class="galerie-header fade">
+      <div>
+        <p class="label">Galerie</p>
+        <span class="rule"></span>
+        <h2 style="font-family:var(--f-serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300">Quelques soirées.</h2>
+      </div>
+      <p class="galerie-header-right">
+        Chaque événement a sa propre atmosphère. Ces images en donnent une idée.
+      </p>
+    </div>
+
+    <div class="gal">
+      <figure class="gp gp-1 fade" role="img" aria-label="Photo 1 — ambiance soirée">
+        <!-- PHOTO_1 : large paysage, ambiance soirée -->
+        Photo 1
+      </figure>
+      <figure class="gp gp-2 fade d1" role="img" aria-label="Photo 2 — portrait">
+        <!-- PHOTO_2 -->
+        Photo 2
+      </figure>
+      <figure class="gp gp-3 fade d1" role="img" aria-label="Photo 3">
+        <!-- PHOTO_3 -->
+        Photo 3
+      </figure>
+      <figure class="gp gp-4 fade d2" role="img" aria-label="Photo 4">
+        <!-- PHOTO_4 -->
+        Photo 4
+      </figure>
+      <figure class="gp gp-5 fade d2" role="img" aria-label="Photo 5">
+        <!-- PHOTO_5 -->
+        Photo 5
+      </figure>
+      <figure class="gp gp-v fade d1" role="img" aria-label="Vidéo ambiance">
+        <!--
+          YOUTUBE_EMBED_2
+          Remplacez par :
+          <iframe width="100%" height="100%" style="position:absolute;inset:0;border:none;"
+            src="https://www.youtube-nocookie.com/embed/VIDEO_ID?rel=0"
+            title="Helion Events ambiance" allowfullscreen loading="lazy">
+          </iframe>
+        -->
+        <div style="display:flex;align-items:center;gap:0.8rem;flex-direction:column">
+          <div class="play-ring" style="width:44px;height:44px">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)">Vidéo ambiance à venir</span>
+        </div>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== FORMULES ==================== -->
+<section class="s" id="formules" aria-labelledby="formules-h">
+  <div class="w">
+
+    <div class="formules-heading fade">
+      <p class="label">Nos Formules</p>
+      <span class="rule"></span>
+      <h2 id="formules-h">
+        Trois façons<br><em>de vivre Helion.</em>
+      </h2>
+      <p>Chaque formule est un point de départ. Tout s'adapte selon votre contexte, votre espace, votre nombre d'invités.</p>
+    </div>
+
+    <div class="formules-grid">
+
+      <article class="fc fade" aria-labelledby="fc1">
+        <div class="fc-bg-num" aria-hidden="true">01</div>
+        <h3 class="fc-name" id="fc1">
+          Prélude
+          <em>L'entrée en matière.</em>
+        </h3>
+        <p>
+          Saxophone live à l'accueil de vos invités, accompagné d'un bar à cocktails artisanaux construit autour de votre événement. La première impression qui donne le ton de la soirée et ne se rattrape jamais.
+        </p>
+        <ul class="fc-list" aria-label="Inclus">
+          <li>Saxophone live à l'accueil</li>
+          <li>Bar cocktails sur mesure</li>
+          <li>Spiritueux premium sélectionnés</li>
+          <li>2 à 3h de prestation</li>
+        </ul>
+        <a href="#contact" class="fc-link">
+          Demander un devis
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </article>
+
+      <article class="fc star fade d1" aria-labelledby="fc2">
+        <div class="fc-bg-num" aria-hidden="true">02</div>
+        <h3 class="fc-name" id="fc2">
+          Accord
+          <em>Son et terroir.</em>
+        </h3>
+        <p>
+          Saxophone live, set DJ et dégustation de vins animée par Théophile Jourdier. Une expérience sensorielle complète qui fait dialoguer la musique et le vin. Pour les soirées qui veulent laisser quelque chose de durable.
+        </p>
+        <ul class="fc-list" aria-label="Inclus">
+          <li>Saxophone live et set DJ</li>
+          <li>Dégustation avec Théophile Jourdier</li>
+          <li>Sélection de vins biodynamiques</li>
+          <li>4 à 5h de prestation</li>
+          <li>Coordination complète</li>
+        </ul>
+        <a href="#contact" class="fc-link">
+          Demander un devis
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </article>
+
+      <article class="fc fade d2" aria-labelledby="fc3">
+        <div class="fc-bg-num" aria-hidden="true">03</div>
+        <h3 class="fc-name" id="fc3">
+          Carte Blanche
+          <em>L'expérience complète.</em>
+        </h3>
+        <p>
+          Saxophone, set DJ, dégustation de vins, bar artisanal, direction artistique. Pour les soirées ambitieuses où chaque détail compte. On construit tout ensemble en amont, rien n'est laissé au hasard.
+        </p>
+        <ul class="fc-list" aria-label="Inclus">
+          <li>Saxophone live et set DJ complet</li>
+          <li>Dégustation vins avec Théophile</li>
+          <li>Bar cocktails sur mesure</li>
+          <li>Direction artistique et coordination</li>
+          <li>Durée et format entièrement adaptés</li>
+        </ul>
+        <a href="#contact" class="fc-link">
+          Demander un devis
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="s" id="contact" aria-labelledby="contact-h" style="background:var(--ink-2)">
+  <div class="w">
+    <div class="contact-grid">
+
+      <div class="contact-left">
+        <div class="fade">
+          <p class="label">Contact</p>
+          <span class="rule"></span>
+          <h2 class="contact-h" id="contact-h">
+            Votre prochaine<br>soirée commence<br><em>ici.</em>
+          </h2>
+        </div>
+        <p class="contact-sub fade d1">
+          Dites-nous ce que vous avez en tête. La date, le nombre d'invités, le type d'événement. Nous revenons vers vous sous 48h avec une première approche construite pour votre contexte.
+        </p>
+        <div class="contact-info fade d2">
+          <a href="mailto:<!-- EMAIL -->">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <!-- EMAIL -->
+          </a>
+          <a href="tel:<!-- PHONE -->">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.42 2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <!-- PHONE -->
+          </a>
+          <a href="https://helionsax.com" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            helionsax.com
+          </a>
+        </div>
+      </div>
+
+      <div class="fade d1">
+        <!-- FORM_ACTION : remplacez action="" par votre endpoint (ex: Formspree) -->
+        <form class="form" action="<!-- FORM_ACTION -->" method="POST" id="contact-form" aria-label="Formulaire de demande de devis" novalidate>
+
+          <div class="form-row">
+            <div class="fg">
+              <label for="f-entreprise">Entreprise *</label>
+              <input type="text" id="f-entreprise" name="entreprise" placeholder="Nom de votre société" required autocomplete="organization">
+            </div>
+            <div class="fg">
+              <label for="f-nom">Votre nom *</label>
+              <input type="text" id="f-nom" name="nom" placeholder="Prénom Nom" required autocomplete="name">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="fg">
+              <label for="f-email">Email *</label>
+              <input type="email" id="f-email" name="email" placeholder="vous@entreprise.com" required autocomplete="email">
+            </div>
+            <div class="fg">
+              <label for="f-date">Date de l'événement *</label>
+              <input type="date" id="f-date" name="date_evenement" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="fg">
+              <label for="f-invites">Nombre d'invités</label>
+              <input type="number" id="f-invites" name="nb_invites" placeholder="ex. 80" min="10" max="2000">
+            </div>
+            <div class="fg">
+              <label for="f-formule">Formule envisagée</label>
+              <select id="f-formule" name="formule">
+                <option value="" disabled selected>Choisir</option>
+                <option value="prelude">Prélude</option>
+                <option value="accord">Accord</option>
+                <option value="carte-blanche">Carte Blanche</option>
+                <option value="autre">Je ne sais pas encore</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label for="f-message">Votre projet</label>
+            <textarea id="f-message" name="message" rows="4" placeholder="Le lieu, l'ambiance souhaitée, ce que vous avez envie que vos invités ressentent..."></textarea>
+          </div>
+
+          <div class="form-foot">
+            <p class="form-note">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Informations confidentielles, jamais partagées.
+            </p>
+            <button type="submit" class="btn-send">
+              Envoyer
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" role="contentinfo">
+  <div class="w">
+    <div class="footer-grid">
+      <a href="#" class="footer-logo">Helion <em>Events</em></a>
+      <nav class="footer-links" aria-label="Navigation">
+        <a href="#concept">Concept</a>
+        <a href="#musique">Musique</a>
+        <a href="#saveurs">Saveurs</a>
+        <a href="#formules">Formules</a>
+        <a href="https://helionsax.com" target="_blank" rel="noopener">Helion Sax</a>
+        <a href="politique-de-confidentialite.html">Confidentialité</a>
+      </nav>
+      <p class="footer-right">
+        Paris, Île-de-France<br>
+        <span id="yr">2026</span> Helion Events
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== JS ==================== -->
+<script>
+/* ---- PRELOADER ---- */
+window.addEventListener('DOMContentLoaded', () => {
+  const word = document.getElementById('preloader-word');
+  const bar  = document.getElementById('preloader-bar');
+  const pre  = document.getElementById('preloader');
+  requestAnimationFrame(() => {
+    word.classList.add('visible');
+    setTimeout(() => bar.classList.add('full'), 150);
+    setTimeout(() => {
+      pre.classList.add('done');
+      initHeroReveal();
+    }, 1400);
+  });
+});
+
+/* ---- HERO REVEAL ---- */
+function initHeroReveal() {
+  document.querySelectorAll('[data-reveal]').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), i * 90);
+  });
+  document.querySelectorAll('#hero .fade').forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 400 + i * 120);
+  });
+}
+
+/* ---- CUSTOM CURSOR ---- */
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(pointer:fine)').matches) {
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  document.addEventListener('mouseleave', () => cursor.classList.add('hidden'));
+  document.addEventListener('mouseenter', () => cursor.classList.remove('hidden'));
+  document.querySelectorAll('a, button, .pillar, .fc, .gp').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+  (function animate() {
+    cx += (mx - cx) * 0.18;
+    cy += (my - cy) * 0.18;
+    cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animate);
+  })();
+}
+
+/* ---- NAV SCROLL ---- */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+/* ---- MOBILE MENU ---- */
+const burger = document.getElementById('burger');
+const mobileNav = document.getElementById('mobile-nav');
+burger.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+function closeMobile() {
+  mobileNav.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+/* ---- PARALLAX HERO ---- */
+const heroBg = document.getElementById('hero-bg');
+window.addEventListener('scroll', () => {
+  if (window.scrollY < window.innerHeight * 1.2) {
+    heroBg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+  }
+}, { passive: true });
+
+/* ---- SCROLL REVEAL ---- */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade:not(#hero .fade), .headline-line').forEach(el => {
+  observer.observe(el);
+});
+
+/* ---- SMOOTH SCROLL ---- */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (!t) return;
+    e.preventDefault();
+    closeMobile();
+    t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ---- FOOTER YEAR ---- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
