@@ -463,7 +463,9 @@ button { cursor: none; }
   line-height: 1;
   pointer-events: none;
   user-select: none;
-  margin-bottom: -2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .concept-h2 {
   font-family: var(--f-serif);
@@ -1100,7 +1102,7 @@ button { cursor: none; }
   <div class="w">
 
     <div class="concept-intro-grid">
-      <div>
+      <div style="position:relative;padding-top:1rem">
         <div class="concept-number fade" aria-hidden="true">01</div>
         <p class="label fade">Le Concept</p>
         <span class="rule fade d1"></span>
