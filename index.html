@@ -179,9 +179,12 @@ section{padding:clamp(60px,9vw,110px) 0;}
   mask-image:radial-gradient(ellipse farthest-corner at 50% 50%, #000 62%, transparent 100%);
 }
 .hero-art svg{width:100%; height:auto; display:block;}
-.hero-art svg .draw{transition:stroke-dashoffset 1s ease;}
-.hero-art svg .dot{transition:opacity 0.9s ease;}
-@media (prefers-reduced-motion:reduce){.hero-art svg .draw, .hero-art svg .dot{transition:none !important;}}
+.hero-art svg .draw{transition:stroke-dashoffset 80ms linear;}
+.hero-art svg .dot{transition:opacity 300ms ease;}
+@keyframes vinylSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.vinyl-spin{transform-origin:488px 118px;}
+.vinyl-spin.spin{animation:vinylSpin 7s linear infinite;}
+@media (prefers-reduced-motion:reduce){.hero-art svg .draw, .hero-art svg .dot{transition:none !important;} .vinyl-spin.spin{animation:none !important;}}
 @media (max-width:980px){.hero-art{display:none;}}
 .hero-eyebrow{font-family:var(--sans); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--or-deep); font-weight:600; margin-bottom:20px;}
 .hero h1{font-size:clamp(2.6rem,6vw,4.4rem); line-height:1.05; letter-spacing:-0.01em; max-width:16ch;}
@@ -362,11 +365,14 @@ section{padding:clamp(60px,9vw,110px) 0;}
           <line class="draw" x1="531" y1="43" x2="544" y2="21" stroke-width="1.1" opacity="0.42"/>
           <line class="draw" x1="562" y1="75" x2="577" y2="65" stroke-width="0.8" opacity="0.3"/>
         </g>
-        <circle class="draw" cx="488" cy="118" r="82" stroke="#8a6a2e" stroke-width="2" fill="url(#brassGrad)"/>
-        <circle class="draw" cx="488" cy="118" r="62" stroke="#F3ECDD" stroke-width="1" opacity="0.55"/>
-        <circle class="draw" cx="488" cy="118" r="42" stroke="#F3ECDD" stroke-width="0.9" opacity="0.4"/>
-        <circle class="draw" cx="488" cy="118" r="16" stroke="#8a6a2e" stroke-width="1.4" fill="#F3ECDD"/>
-        <circle class="dot" cx="488" cy="118" r="2" fill="#8a6a2e"/>
+        <g class="vinyl-spin" id="vinylDisc">
+          <circle class="draw" cx="488" cy="118" r="82" stroke="#8a6a2e" stroke-width="2" fill="url(#brassGrad)"/>
+          <circle class="draw" cx="488" cy="118" r="62" stroke="#F3ECDD" stroke-width="1" opacity="0.55"/>
+          <circle class="draw" cx="488" cy="118" r="42" stroke="#F3ECDD" stroke-width="0.9" opacity="0.4"/>
+          <circle class="dot" cx="527" cy="150" r="2.2" fill="#F3ECDD" opacity="0.7"/>
+          <circle class="draw" cx="488" cy="118" r="16" stroke="#8a6a2e" stroke-width="1.4" fill="#F3ECDD"/>
+          <circle class="dot" cx="488" cy="118" r="2" fill="#8a6a2e"/>
+        </g>
         <circle class="draw" cx="590" cy="52" r="8" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="3"/>
         <path class="draw" d="M584 58 C572 68 566 80 552 84 C540 87 528 87 517 93" stroke="url(#brassGrad)" stroke-width="6" stroke-linecap="round"/>
         <path class="draw" d="M502 86 C513 82 528 86 531 95 C528 102 513 104 502 99 C497 96 497 89 502 86 Z" stroke="#8a6a2e" stroke-width="1.4" stroke-linejoin="round" fill="url(#brassGrad)"/>
@@ -665,42 +671,72 @@ var io = new IntersectionObserver(function(entries){
 }, {threshold:0.15});
 document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-/* ---- hero-art : se dessine une fois, declenche au premier scroll (meme logique que .reveal) ---- */
+/* ---- hero-art : le premier scroll lance le dessin (page bloquee), puis le scroll se libere ---- */
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var narrow = window.matchMedia('(max-width:980px)').matches;
   var art = document.querySelector('.hero-art svg');
   if (!art) return;
-  var draws = Array.prototype.slice.call(art.querySelectorAll('.draw'));
-  var dots = Array.prototype.slice.call(art.querySelectorAll('.dot'));
-  if (reduce) return;
+  var vinyl = document.getElementById('vinylDisc');
 
-  draws.forEach(function(el){
+  var drawData = Array.prototype.map.call(art.querySelectorAll('.draw'), function(el, i){
     var len = el.getTotalLength();
     el.style.strokeDasharray = len;
-    el.style.strokeDashoffset = len;
+    return { el: el, len: len, start: i * 0.028 };
   });
-  dots.forEach(function(el){
-    el.dataset.o = el.getAttribute('opacity') || '1';
-    el.style.opacity = 0;
+  var dotData = Array.prototype.map.call(art.querySelectorAll('.dot'), function(el, i){
+    return { el: el, base: el.getAttribute('opacity') || '1', start: 0.6 + i * 0.02 };
   });
 
-  var fired = false;
-  function reveal(){
-    if (fired) return;
-    fired = true;
-    draws.forEach(function(el, i){
-      el.style.transitionDelay = (i * 55) + 'ms';
-      requestAnimationFrame(function(){ el.style.strokeDashoffset = 0; });
+  function applyProgress(t){
+    drawData.forEach(function(d){
+      var p = Math.max(0, Math.min(1, (t - d.start) / (1 - d.start)));
+      d.el.style.strokeDashoffset = d.len * (1 - p);
     });
-    dots.forEach(function(el, i){
-      el.style.transitionDelay = (700 + i * 50) + 'ms';
-      requestAnimationFrame(function(){ el.style.opacity = el.dataset.o; });
+    dotData.forEach(function(d){
+      var p = Math.max(0, Math.min(1, (t - d.start) / Math.max(0.001, 1 - d.start)));
+      d.el.style.opacity = p * d.base;
     });
-    window.removeEventListener('scroll', onScroll);
   }
-  function onScroll(){ if (window.scrollY > 4) reveal(); }
-  if (window.scrollY > 4) { reveal(); }
-  else { window.addEventListener('scroll', onScroll, {passive:true}); }
+
+  if (reduce || narrow || window.scrollY > 4) {
+    applyProgress(1);
+    if (vinyl) vinyl.classList.add('spin');
+    return;
+  }
+
+  drawData.forEach(function(d){ d.el.style.strokeDashoffset = d.len; });
+  dotData.forEach(function(d){ d.el.style.opacity = 0; });
+
+  var locked = true, playing = false, startTime = null;
+  var duration = 1500;
+  function easeOutCubic(x){ return 1 - Math.pow(1 - x, 3); }
+  function step(ts){
+    if (!startTime) startTime = ts;
+    var raw = Math.min(1, (ts - startTime) / duration);
+    applyProgress(easeOutCubic(raw));
+    if (raw < 1) { requestAnimationFrame(step); }
+    else { finish(); }
+  }
+  function finish(){
+    locked = false;
+    document.documentElement.style.overflow = '';
+    if (vinyl) vinyl.classList.add('spin');
+    window.removeEventListener('wheel', onWheel, {passive:false});
+    window.removeEventListener('touchmove', onTouch, {passive:false});
+    window.removeEventListener('keydown', onKey);
+  }
+  function begin(){ if (!playing) { playing = true; requestAnimationFrame(step); } }
+  function onWheel(e){ if (locked) { e.preventDefault(); begin(); } }
+  function onTouch(e){ if (locked) { e.preventDefault(); begin(); } }
+  function onKey(e){
+    if (!locked) return;
+    if (['ArrowDown','PageDown',' ','Spacebar'].indexOf(e.key) !== -1) { e.preventDefault(); begin(); }
+  }
+  document.documentElement.style.overflow = 'hidden';
+  window.addEventListener('wheel', onWheel, {passive:false});
+  window.addEventListener('touchmove', onTouch, {passive:false});
+  window.addEventListener('keydown', onKey);
 })();
 </script>
 </body>
