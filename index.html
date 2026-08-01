@@ -319,6 +319,22 @@ section{padding:clamp(60px,9vw,110px) 0;}
 <section class="hero">
   <div class="hero-art" aria-hidden="true">
     <svg viewBox="0 0 620 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <!-- halo qui unifie la composition -->
+      <path class="draw" d="M90,430 A300,300 0 0 1 566,54" stroke="var(--or)" stroke-width="1" opacity="0.16"/>
+      <!-- ruban de son : relie platine, cocktail et saxophone en un seul geste -->
+      <g>
+        <path class="draw" d="M430,168 C350,205 330,255 300,270 C240,300 160,320 96,394" stroke="var(--or-deep)" stroke-width="1.3" opacity="0.55" stroke-linecap="round"/>
+        <path class="draw" d="M442,176 C362,213 342,263 312,278 C252,308 172,328 108,402" stroke="var(--or)" stroke-width="0.8" opacity="0.3" stroke-linecap="round"/>
+        <path class="draw" d="M418,160 C338,197 318,247 288,262 C228,292 148,312 84,386" stroke="var(--or)" stroke-width="0.8" opacity="0.3" stroke-linecap="round"/>
+      </g>
+      <!-- egaliseur : clin d'oeil DJ -->
+      <g stroke="var(--or-deep)" stroke-width="2.2" stroke-linecap="round">
+        <line class="draw" x1="424" y1="228" x2="424" y2="212"/>
+        <line class="draw" x1="433" y1="228" x2="433" y2="200"/>
+        <line class="draw" x1="442" y1="228" x2="442" y2="218"/>
+        <line class="draw" x1="451" y1="228" x2="451" y2="206"/>
+        <line class="draw" x1="460" y1="228" x2="460" y2="215"/>
+      </g>
       <!-- platine vinyle -->
       <g>
         <circle class="draw" cx="488" cy="118" r="82" stroke="var(--or-deep)" stroke-width="1.9"/>
@@ -359,11 +375,12 @@ section{padding:clamp(60px,9vw,110px) 0;}
         <circle class="dot" cx="50" cy="160" r="3.2" fill="var(--or-deep)"/>
         <path class="draw" d="M20 20 L27 15" stroke="var(--or)" stroke-width="1" opacity="0.6" stroke-linecap="round"/>
       </g>
-      <!-- trait fin de liaison + poussiere doree -->
-      <path class="draw" d="M8,362 C100,182 260,42 610,150" stroke="var(--or)" stroke-width="1" opacity="0.3"/>
+      <!-- poussiere doree -->
       <circle class="dot" cx="545" cy="260" r="1.4" fill="var(--or)" opacity="0.5"/>
-      <circle class="dot" cx="40" cy="135" r="1.4" fill="var(--or)" opacity="0.5"/>
-      <circle class="dot" cx="255" cy="350" r="1.4" fill="var(--or)" opacity="0.5"/>
+      <circle class="dot" cx="150" cy="135" r="1.4" fill="var(--or)" opacity="0.5"/>
+      <circle class="dot" cx="380" cy="340" r="1.8" fill="var(--or)" opacity="0.5"/>
+      <circle class="dot" cx="220" cy="300" r="1.3" fill="var(--or)" opacity="0.45"/>
+      <circle class="dot" cx="140" cy="230" r="2" fill="var(--or)" opacity="0.4"/>
     </svg>
   </div>
   <div class="w">
