@@ -166,9 +166,22 @@ section{padding:clamp(60px,9vw,110px) 0;}
 
 /* ---- HERO ---- */
 .hero{
+  position:relative;
+  overflow:hidden;
   padding:clamp(80px,14vh,140px) 0 clamp(60px,8vh,90px);
   background:linear-gradient(180deg, var(--creme) 0%, var(--ivoire) 100%);
 }
+.hero .w{position:relative; z-index:1;}
+.hero-art{
+  position:absolute; top:50%; right:clamp(-60px,-1vw,10px); transform:translateY(-50%);
+  width:clamp(360px,38vw,560px); z-index:0; pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse farthest-corner at 50% 50%, #000 62%, transparent 100%);
+  mask-image:radial-gradient(ellipse farthest-corner at 50% 50%, #000 62%, transparent 100%);
+}
+.hero-art svg{width:100%; height:auto; display:block;}
+.hero-art svg .draw{transition:stroke-dashoffset 1.7s var(--ease);}
+@media (max-width:980px){.hero-art{display:none;}}
+@media (prefers-reduced-motion:reduce){.hero-art svg .draw, .hero-art svg .dot{transition:none !important;}}
 .hero-eyebrow{font-family:var(--sans); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--or-deep); font-weight:600; margin-bottom:20px;}
 .hero h1{font-size:clamp(2.6rem,6vw,4.4rem); line-height:1.05; letter-spacing:-0.01em; max-width:16ch;}
 .hero h1 em{font-style:italic; color:var(--or-deep);}
@@ -303,6 +316,47 @@ section{padding:clamp(60px,9vw,110px) 0;}
 
 <!-- ==================== HERO ==================== -->
 <section class="hero">
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 620 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <!-- vinyle -->
+      <g>
+        <circle class="draw" cx="500" cy="110" r="80" stroke="var(--or-deep)" stroke-width="1.6"/>
+        <circle class="draw" cx="500" cy="110" r="65" stroke="var(--or)" stroke-width="1" opacity="0.5"/>
+        <circle class="draw" cx="500" cy="110" r="50" stroke="var(--or)" stroke-width="1" opacity="0.5"/>
+        <circle class="draw" cx="500" cy="110" r="35" stroke="var(--or)" stroke-width="1" opacity="0.5"/>
+        <circle class="draw" cx="500" cy="110" r="11" stroke="var(--or-deep)" stroke-width="1.4"/>
+        <circle class="dot" cx="500" cy="110" r="2" fill="var(--or-deep)"/>
+        <path class="draw" d="M560 40 L 525 85" stroke="var(--or-deep)" stroke-width="1.6" stroke-linecap="round"/>
+        <circle class="draw" cx="560" cy="40" r="4.5" stroke="var(--or-deep)" stroke-width="1.4"/>
+        <circle class="dot" cx="525" cy="85" r="2.6" fill="var(--or-deep)"/>
+      </g>
+      <!-- coupe a cocktail -->
+      <g>
+        <path class="draw" d="M280 205 Q330 222 380 205 C374 235 355 258 330 282 C305 258 286 235 280 205 Z" stroke="var(--or-deep)" stroke-width="1.6" stroke-linejoin="round"/>
+        <path class="draw" d="M330 282 L 330 330" stroke="var(--or-deep)" stroke-width="1.6" stroke-linecap="round"/>
+        <ellipse class="draw" cx="330" cy="334" rx="26" ry="5" stroke="var(--or-deep)" stroke-width="1.4"/>
+        <path class="draw" d="M365 198 C374 189 376 178 369 171 C361 178 362 190 365 198 Z" stroke="var(--or)" stroke-width="1.2" opacity="0.8"/>
+        <circle class="dot" cx="345" cy="188" r="2.2" fill="var(--or)" opacity="0.6"/>
+        <circle class="dot" cx="355" cy="176" r="1.8" fill="var(--or)" opacity="0.6"/>
+        <circle class="dot" cx="348" cy="164" r="1.3" fill="var(--or)" opacity="0.6"/>
+      </g>
+      <!-- saxophone -->
+      <g>
+        <ellipse class="draw" cx="112" cy="250" rx="6" ry="10" transform="rotate(-24 112 250)" stroke="var(--or-deep)" stroke-width="1.6"/>
+        <path class="draw" d="M107 258 C96 272 79 282 71 305 C63 328 83 342 87 363 C91 384 61 400 49 420 C39 436 76 448 106 438" stroke="var(--or-deep)" stroke-width="1.8" stroke-linecap="round"/>
+        <circle class="dot" cx="79" cy="310" r="2.4" fill="var(--or-deep)"/>
+        <circle class="dot" cx="83" cy="335" r="2.4" fill="var(--or-deep)"/>
+        <circle class="dot" cx="79" cy="360" r="2.4" fill="var(--or-deep)"/>
+        <circle class="dot" cx="69" cy="385" r="2.8" fill="var(--or-deep)"/>
+        <circle class="dot" cx="59" cy="408" r="2.8" fill="var(--or-deep)"/>
+      </g>
+      <!-- trait fin de liaison + poussiere doree -->
+      <path class="draw" d="M8,362 C100,182 260,42 610,150" stroke="var(--or)" stroke-width="1" opacity="0.3"/>
+      <circle class="dot" cx="545" cy="260" r="1.4" fill="var(--or)" opacity="0.5"/>
+      <circle class="dot" cx="40" cy="135" r="1.4" fill="var(--or)" opacity="0.5"/>
+      <circle class="dot" cx="255" cy="350" r="1.4" fill="var(--or)" opacity="0.5"/>
+    </svg>
+  </div>
   <div class="w">
     <span class="hero-eyebrow">Paris &amp; Île-de-France · Soirées clé en main</span>
     <h1>DJ, son, lumière et bar à cocktails <em>pour votre soirée à Paris.</em></h1>
@@ -548,6 +602,43 @@ var io = new IntersectionObserver(function(entries){
   entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold:0.15});
 document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+/* ---- hero-art : se dessine au scroll ---- */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var art = document.querySelector('.hero-art svg');
+  if (!art) return;
+  var draws = Array.prototype.slice.call(art.querySelectorAll('.draw'));
+  var dots = Array.prototype.slice.call(art.querySelectorAll('.dot'));
+  if (reduce) return;
+
+  draws.forEach(function(el){
+    var len = el.getTotalLength();
+    el.style.strokeDasharray = len;
+    el.style.strokeDashoffset = len;
+  });
+  dots.forEach(function(el){
+    el.dataset.o = el.getAttribute('opacity') || '1';
+    el.style.opacity = 0;
+    el.style.transition = 'opacity 1s ' + getComputedStyle(document.documentElement).getPropertyValue('--ease');
+  });
+
+  var artIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      draws.forEach(function(el, i){
+        el.style.transitionDelay = (i * 70) + 'ms';
+        requestAnimationFrame(function(){ el.style.strokeDashoffset = 0; });
+      });
+      dots.forEach(function(el, i){
+        el.style.transitionDelay = (900 + i * 60) + 'ms';
+        requestAnimationFrame(function(){ el.style.opacity = el.dataset.o; });
+      });
+      artIo.unobserve(e.target);
+    });
+  }, {threshold:0.2});
+  artIo.observe(art);
+})();
 </script>
 </body>
 </html>
