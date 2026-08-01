@@ -184,7 +184,13 @@ section{padding:clamp(60px,9vw,110px) 0;}
 @keyframes vinylSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 .vinyl-spin{transform-origin:488px 118px;}
 .vinyl-spin.spin{animation:vinylSpin 7s linear infinite;}
-@media (prefers-reduced-motion:reduce){.hero-art svg .draw, .hero-art svg .dot{transition:none !important;} .vinyl-spin.spin{animation:none !important;}}
+@keyframes bubbleRise{0%{transform:translateY(0) scale(0.7); opacity:0;} 18%{opacity:1;} 100%{transform:translateY(-16px) scale(1.15); opacity:0;}}
+.bubble{transform-box:fill-box; transform-origin:center;}
+.bubble.go{animation:bubbleRise 2.4s ease-in infinite;}
+@keyframes noteFloat{0%{transform:translate(0,0) rotate(0deg); opacity:0;} 18%{opacity:0.9;} 100%{transform:translate(-16px,-30px) rotate(-10deg); opacity:0;}}
+.note{transform-box:fill-box; transform-origin:center;}
+.note.go{animation:noteFloat 2.8s ease-out infinite;}
+@media (prefers-reduced-motion:reduce){.hero-art svg .draw, .hero-art svg .dot{transition:none !important;} .vinyl-spin.spin, .bubble.go, .note.go{animation:none !important;}}
 @media (max-width:980px){.hero-art{display:none;}}
 .hero-eyebrow{font-family:var(--sans); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--or-deep); font-weight:600; margin-bottom:20px;}
 .hero h1{font-size:clamp(2.6rem,6vw,4.4rem); line-height:1.05; letter-spacing:-0.01em; max-width:16ch;}
@@ -385,12 +391,15 @@ section{padding:clamp(60px,9vw,110px) 0;}
         <path class="draw" d="M330 282 L 330 330" stroke="url(#brassGrad)" stroke-width="6" stroke-linecap="round"/>
         <ellipse class="draw" cx="330" cy="334" rx="26" ry="6" stroke="#8a6a2e" stroke-width="1.4" fill="url(#brassGrad)"/>
         <path class="draw" d="M365 198 C374 189 376 178 369 171 C361 178 362 190 365 198 Z" stroke="#8a6a2e" stroke-width="1.2" fill="url(#brassGrad)"/>
-        <circle class="dot" cx="345" cy="188" r="3" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="1.2"/>
-        <circle class="dot" cx="355" cy="176" r="2.4" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="1.2"/>
-        <circle class="dot" cx="348" cy="164" r="1.8" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="1.2"/>
+        <circle class="dot bubble" cx="345" cy="188" r="3" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="1.2"/>
+        <circle class="dot bubble" cx="355" cy="176" r="2.4" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="1.2"/>
+        <circle class="dot bubble" cx="348" cy="164" r="1.8" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="1.2"/>
+        <circle class="dot bubble" cx="318" cy="248" r="2.2" fill="#F3ECDD" opacity="0.75"/>
+        <circle class="dot bubble" cx="336" cy="262" r="1.6" fill="#F3ECDD" opacity="0.7"/>
+        <circle class="dot bubble" cx="308" cy="228" r="1.8" fill="#F3ECDD" opacity="0.7"/>
       </g>
       <!-- saxophone : memes tracés que l'animation hero de helionsax.com, brass gradient -->
-      <g transform="translate(-2,179) scale(0.329)">
+      <g transform="translate(-7,165) scale(0.368)">
         <path class="draw" d="M 300 34
                      C 296 52, 286 62, 272 72
                      C 250 88, 232 100, 226 122
@@ -416,6 +425,16 @@ section{padding:clamp(60px,9vw,110px) 0;}
         <circle class="dot" cx="187" cy="497" r="11" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="3"/>
         <circle class="dot" cx="165" cy="520" r="9" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="3"/>
         <circle class="dot" cx="150" cy="500" r="7" fill="#F3ECDD" stroke="#8a6a2e" stroke-width="3"/>
+      </g>
+      <!-- notes de musique qui s'echappent du pavillon -->
+      <g class="dot note" fill="none" stroke="#8a6a2e" stroke-width="1.4" stroke-linecap="round">
+        <ellipse cx="47" cy="316" rx="3.4" ry="2.5" transform="rotate(-20 47 316)" fill="#8a6a2e" stroke="none"/>
+        <line x1="50" y1="315" x2="50" y2="298"/>
+        <path d="M50,298 C55,299 57,303 54,306" fill="none"/>
+      </g>
+      <g class="dot note" fill="none" stroke="#8a6a2e" stroke-width="1.2" stroke-linecap="round">
+        <ellipse cx="65" cy="304" rx="2.8" ry="2" transform="rotate(-20 65 304)" fill="#8a6a2e" stroke="none"/>
+        <line x1="67.5" y1="303" x2="67.5" y2="290"/>
       </g>
       <!-- poussiere doree -->
       <circle class="dot" cx="545" cy="260" r="1.4" fill="var(--or)" opacity="0.5"/>
@@ -699,9 +718,21 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     });
   }
 
+  function startLoops(){
+    if (vinyl) vinyl.classList.add('spin');
+    Array.prototype.forEach.call(art.querySelectorAll('.bubble'), function(el, i){
+      el.style.animationDelay = (i * 340) + 'ms';
+      el.classList.add('go');
+    });
+    Array.prototype.forEach.call(art.querySelectorAll('.note'), function(el, i){
+      el.style.animationDelay = (i * 700) + 'ms';
+      el.classList.add('go');
+    });
+  }
+
   if (reduce || narrow || window.scrollY > 4) {
     applyProgress(1);
-    if (vinyl) vinyl.classList.add('spin');
+    startLoops();
     return;
   }
 
@@ -721,7 +752,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   function finish(){
     locked = false;
     document.documentElement.style.overflow = '';
-    if (vinyl) vinyl.classList.add('spin');
+    startLoops();
     window.removeEventListener('wheel', onWheel, {passive:false});
     window.removeEventListener('touchmove', onTouch, {passive:false});
     window.removeEventListener('keydown', onKey);
