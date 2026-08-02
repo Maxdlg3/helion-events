@@ -542,7 +542,6 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   }
   function finish(){
     locked = false;
-    document.documentElement.style.overflow = '';
     startLoops();
     window.removeEventListener('wheel', onWheel, {passive:false});
     window.removeEventListener('touchmove', onTouch, {passive:false});
@@ -555,7 +554,6 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     if (!locked) return;
     if (['ArrowDown','PageDown',' ','Spacebar'].indexOf(e.key) !== -1) { e.preventDefault(); begin(); }
   }
-  document.documentElement.style.overflow = 'hidden';
   window.addEventListener('wheel', onWheel, {passive:false});
   window.addEventListener('touchmove', onTouch, {passive:false});
   window.addEventListener('keydown', onKey);
