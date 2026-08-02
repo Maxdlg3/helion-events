@@ -245,7 +245,7 @@ section{padding:clamp(60px,9vw,110px) 0;}
 .detail-card h3{font-size:1.3rem; margin-bottom:14px;}
 .detail-card ul{display:flex; flex-direction:column; gap:10px; margin-bottom:24px;}
 .detail-card li{font-size:0.92rem; color:var(--texte-doux); padding-left:18px; position:relative;}
-.detail-card li::before{content:"—"; position:absolute; left:0; color:var(--or-deep);}
+.detail-card li::before{content:"•"; position:absolute; left:0; color:var(--or-deep);}
 
 /* ---- LIENS CONNEXES (sous-pages) ---- */
 .related{background:var(--ivoire);}
