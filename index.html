@@ -485,6 +485,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var narrow = window.matchMedia('(max-width:980px)').matches;
+  if (narrow) return; /* hero-art est display:none sous 980px, rien a calculer */
   var art = document.querySelector('.hero-art svg');
   if (!art) return;
   var vinyl = document.getElementById('vinylDisc');
@@ -521,7 +522,7 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     });
   }
 
-  if (reduce || narrow || window.scrollY > 4) {
+  if (reduce || window.scrollY > 4) {
     applyProgress(1);
     startLoops();
     return;
