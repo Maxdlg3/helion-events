@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://events.helionsax.com/sitemap.xml
+Sitemap: https://solorevents.com/sitemap.xml
 
 User-agent: GPTBot
 Allow: /
