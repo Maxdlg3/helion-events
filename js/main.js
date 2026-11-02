@@ -41,7 +41,7 @@
         '',
         message
       ].filter(Boolean);
-      var mailto = 'mailto:bonjour@solorevents.com'
+      var mailto = 'mailto:contact@helionsax.com'
         + '?subject=' + encodeURIComponent(subject)
         + '&body=' + encodeURIComponent(bodyLines.join('\n'));
       window.location.href = mailto;
