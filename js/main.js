@@ -10,14 +10,14 @@
     if (reduceMotion) {
       hideLoader();
     } else {
-      // keep the loader up until the focus, shine and star flare have played (~2.3s from navigation start)
+      // keep the loader up until the focus, shine and star flare have played (~3.6s from navigation start)
       var hideAfterIntro = function(){
-        setTimeout(hideLoader, Math.max(0, 2300 - performance.now()));
+        setTimeout(hideLoader, Math.max(0, 3600 - performance.now()));
       };
       if (document.readyState === 'complete') hideAfterIntro();
       else window.addEventListener('load', hideAfterIntro);
       // safety net so a slow load never traps the visitor behind the loader
-      setTimeout(hideLoader, 4000);
+      setTimeout(hideLoader, 5500);
     }
   }
 

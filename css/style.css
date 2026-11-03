@@ -125,7 +125,7 @@ p{ margin: 0; color: var(--fg-muted); }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.7s var(--ease), visibility 0.7s var(--ease);
+  transition: opacity 0.9s var(--ease), visibility 0.9s var(--ease);
 }
 #loader::before{
   content: '';
@@ -134,44 +134,44 @@ p{ margin: 0; color: var(--fg-muted); }
   aspect-ratio: 1;
   background: radial-gradient(circle, rgba(207,167,88,0.14) 0%, rgba(207,167,88,0.04) 38%, transparent 68%);
   opacity: 0;
-  animation: loaderHalo 1.6s var(--ease) forwards 0.3s;
+  animation: loaderHalo 2.2s var(--ease) forwards 0.3s;
 }
 @keyframes loaderHalo{ to{ opacity: 1; } }
 .loader-inner{
   display: flex; flex-direction: column; align-items: center;
-  transition: transform 0.7s var(--ease), filter 0.7s var(--ease), opacity 0.7s var(--ease);
+  transition: transform 0.9s var(--ease), filter 0.9s var(--ease), opacity 0.9s var(--ease);
 }
 /* Mise au point : le logo passe du flou au net, comme un objectif qui fait le point */
 .loader-logo{
   position: relative;
-  width: min(52vw, 260px);
+  width: min(64vw, 280px);
   opacity: 0;
-  filter: blur(14px);
-  transform: scale(1.08);
-  animation: loaderFocus 1s var(--ease) forwards 0.1s;
+  filter: blur(16px);
+  transform: scale(1.1);
+  animation: loaderFocus 1.5s var(--ease) forwards 0.2s;
 }
 .loader-logo img{ width: 100%; height: auto; display: block; }
 @keyframes loaderFocus{ to{ opacity: 1; filter: blur(0); transform: scale(1); } }
 /* Reflet doré qui balaie uniquement les lettres (masque = le logo) */
 .loader-shine{
   position: absolute; inset: 0; pointer-events: none;
-  -webkit-mask: url(/images/solor-logo.png?v=2) center / contain no-repeat;
-          mask: url(/images/solor-logo.png?v=2) center / contain no-repeat;
+  -webkit-mask: url(/images/solor-logo-loader.png) center / contain no-repeat;
+          mask: url(/images/solor-logo-loader.png) center / contain no-repeat;
   background: linear-gradient(110deg, transparent 38%, rgba(207,167,88,0.85) 46%, #fff3d6 50%, rgba(207,167,88,0.85) 54%, transparent 62%);
   background-size: 250% 100%;
   background-position: 105% 0;
-  animation: loaderShine 1.2s cubic-bezier(.45,.05,.35,1) forwards 0.7s;
+  animation: loaderShine 1.7s cubic-bezier(.45,.05,.35,1) forwards 1.2s;
 }
 @keyframes loaderShine{ to{ background-position: -5% 0; } }
 /* Éclat de l'étoile, puis léger scintillement */
 .loader-flare{
-  position: absolute; left: 68.1%; top: 31.9%;
-  width: 46%; aspect-ratio: 1; pointer-events: none;
+  position: absolute; left: 69.8%; top: 15.3%;
+  width: 42%; aspect-ratio: 1; pointer-events: none;
   background: radial-gradient(circle, rgba(255,243,214,0.95) 0%, rgba(207,167,88,0.5) 6%, rgba(207,167,88,0.12) 22%, transparent 55%);
   mix-blend-mode: screen;
   opacity: 0;
   transform: translate(-50%,-50%) scale(0) rotate(-45deg);
-  animation: loaderFlare 1s var(--ease) forwards 1.15s, loaderTwinkle 1.4s ease-in-out 2.15s infinite alternate;
+  animation: loaderFlare 1.3s var(--ease) forwards 2.1s, loaderTwinkle 1.6s ease-in-out 3.4s infinite alternate;
 }
 .loader-flare::before, .loader-flare::after{
   content: ''; position: absolute; left: 50%; top: 50%;
