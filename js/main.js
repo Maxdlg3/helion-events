@@ -21,29 +21,34 @@
     }
   }
 
-  // Contact form: compose a pre-filled mailto (no backend on this static site)
+  // Contact form: sent through Formspree (same endpoint as helionsax.com), with an inline confirmation
   var contactForm = document.getElementById('contactForm');
   if (contactForm) {
+    var formStatus = contactForm.querySelector('.contact-form-status');
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+    var setStatus = function(text, state){
+      if (!formStatus) return;
+      formStatus.textContent = text;
+      formStatus.setAttribute('data-state', state);
+    };
     contactForm.addEventListener('submit', function(e){
       e.preventDefault();
       var name = contactForm.name.value.trim();
-      var email = contactForm.email.value.trim();
-      var date = contactForm.date.value;
       var type = contactForm.type.value;
-      var message = contactForm.message.value.trim();
-      var subject = 'Demande ' + type + (name ? ' - ' + name : '');
-      var bodyLines = [
-        name ? 'Nom : ' + name : '',
-        email ? 'Email : ' + email : '',
-        date ? 'Date souhaitée : ' + date : '',
-        'Type d\'événement : ' + type,
-        '',
-        message
-      ].filter(Boolean);
-      var mailto = 'mailto:contact@helionsax.com'
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body=' + encodeURIComponent(bodyLines.join('\n'));
-      window.location.href = mailto;
+      var data = new FormData(contactForm);
+      data.append('_subject', 'Demande Solor : ' + type + (name ? ' - ' + name : ''));
+      submitBtn.disabled = true;
+      setStatus('Envoi en cours...', 'pending');
+      fetch(contactForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+        .then(function(res){
+          if (!res.ok) throw new Error('send failed');
+          contactForm.reset();
+          setStatus('Merci, votre demande est bien envoyée. On revient vers vous sous 48h.', 'ok');
+        })
+        .catch(function(){
+          setStatus("L'envoi n'a pas fonctionné. Écrivez-nous directement à contact@helionsax.com.", 'error');
+        })
+        .then(function(){ submitBtn.disabled = false; });
     });
   }
 

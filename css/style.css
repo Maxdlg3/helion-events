@@ -543,6 +543,10 @@ a.contact-row:hover, a.contact-row:focus-visible{ color: var(--accent); border-b
 .contact-form textarea{ resize: vertical; font-family: var(--font-body); }
 .contact-form .btn{ align-self: flex-start; }
 .contact-form-note{ font-size: 0.76rem; color: var(--fg-faint); margin: 0; }
+.contact-form-status{ font-size: 0.86rem; margin: 0; min-height: 1.2em; color: var(--fg-muted); }
+.contact-form-status[data-state="ok"]{ color: var(--accent); }
+.contact-form-status[data-state="error"]{ color: #e08a7a; }
+.contact-form button[disabled]{ opacity: 0.6; cursor: wait; }
 @media (max-width: 860px){
   .contact-grid{ grid-template-columns: 1fr; }
   .field-row{ grid-template-columns: 1fr; }

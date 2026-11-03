@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="/images/gal-1.jpg" fetchpriority="high">
-<link rel="stylesheet" href="/css/style.css?v=20261103b">
+<link rel="stylesheet" href="/css/style.css?v=20261103c">
 
 <script type="application/ld+json">
 {
@@ -332,7 +332,7 @@
             </div>
           </div>
         </div>
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xeopkaqg" method="POST">
           <div class="field">
             <label for="cf-name">Nom</label>
             <input type="text" id="cf-name" name="name" autocomplete="name" required>
@@ -362,7 +362,8 @@
             <textarea id="cf-message" name="message" rows="4" placeholder="Lieu, nombre d'invités, ambiance recherchée..."></textarea>
           </div>
           <button type="submit" class="btn btn-solid">Envoyer la demande</button>
-          <p class="contact-form-note">Ouvre votre messagerie avec la demande pré-remplie, à destination de contact@helionsax.com.</p>
+          <p class="contact-form-status" role="status" aria-live="polite"></p>
+          <p class="contact-form-note">Votre demande nous est transmise par e-mail (via Formspree). Vous pouvez aussi écrire à contact@helionsax.com.</p>
         </form>
       </div>
     </div>
@@ -376,6 +377,6 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="/js/main.js?v=20261103b"></script>
+<script src="/js/main.js?v=20261103c"></script>
 </body>
 </html>
