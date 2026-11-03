@@ -10,15 +10,14 @@
     if (reduceMotion) {
       hideLoader();
     } else {
-      var minTimer = setTimeout(function(){
-        if (document.readyState === 'complete') hideLoader();
-      }, 1300);
-      window.addEventListener('load', function(){
-        setTimeout(hideLoader, 1300);
-        clearTimeout(minTimer);
-      });
+      // keep the loader up until the focus, shine and star flare have played (~2.3s from navigation start)
+      var hideAfterIntro = function(){
+        setTimeout(hideLoader, Math.max(0, 2300 - performance.now()));
+      };
+      if (document.readyState === 'complete') hideAfterIntro();
+      else window.addEventListener('load', hideAfterIntro);
       // safety net so a slow load never traps the visitor behind the loader
-      setTimeout(hideLoader, 3200);
+      setTimeout(hideLoader, 4000);
     }
   }
 
@@ -147,4 +146,65 @@
     }, { threshold: 0.1 });
     clips.forEach(function(clip){ clipIO.observe(clip); });
   }
+
+  // Reference gallery: click a photo to browse all of them full size
+  document.querySelectorAll('.reference-gallery').forEach(function(gallery){
+    var items = Array.prototype.slice.call(gallery.querySelectorAll('.reference-item'));
+    if (!items.length) return;
+    var box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Photos de la soirée');
+    box.innerHTML = '<img alt="">'
+      + '<button type="button" class="lightbox-close" aria-label="Fermer">&times;</button>'
+      + '<button type="button" class="lightbox-prev" aria-label="Photo précédente">&#8249;</button>'
+      + '<button type="button" class="lightbox-next" aria-label="Photo suivante">&#8250;</button>'
+      + '<p class="lightbox-count"></p>';
+    document.body.appendChild(box);
+    var img = box.querySelector('img');
+    var count = box.querySelector('.lightbox-count');
+    var current = 0, lastFocus = null;
+    var show = function(i){
+      current = (i + items.length) % items.length;
+      var item = items[current];
+      var thumb = item.querySelector('img');
+      img.src = item.getAttribute('href');
+      img.alt = thumb ? thumb.alt : (item.getAttribute('data-alt') || '');
+      count.textContent = (current + 1) + ' / ' + items.length;
+    };
+    var open = function(i){
+      lastFocus = document.activeElement;
+      show(i);
+      box.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      box.querySelector('.lightbox-close').focus();
+    };
+    var close = function(){
+      box.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    };
+    items.forEach(function(item, i){
+      item.addEventListener('click', function(e){ e.preventDefault(); open(i); });
+    });
+    box.querySelector('.lightbox-close').addEventListener('click', close);
+    box.querySelector('.lightbox-prev').addEventListener('click', function(){ show(current - 1); });
+    box.querySelector('.lightbox-next').addEventListener('click', function(){ show(current + 1); });
+    box.addEventListener('click', function(e){ if (e.target === box) close(); });
+    document.addEventListener('keydown', function(e){
+      if (!box.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(current - 1);
+      else if (e.key === 'ArrowRight') show(current + 1);
+    });
+    var touchX = null;
+    box.addEventListener('touchstart', function(e){ touchX = e.touches[0].clientX; }, { passive: true });
+    box.addEventListener('touchend', function(e){
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+      touchX = null;
+    });
+  });
 })();

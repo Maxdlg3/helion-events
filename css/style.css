@@ -127,23 +127,74 @@ p{ margin: 0; color: var(--fg-muted); }
   justify-content: center;
   transition: opacity 0.7s var(--ease), visibility 0.7s var(--ease);
 }
-.loader-inner{ display: flex; flex-direction: column; align-items: center; }
+#loader::before{
+  content: '';
+  position: absolute;
+  width: min(120vw, 620px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, rgba(207,167,88,0.14) 0%, rgba(207,167,88,0.04) 38%, transparent 68%);
+  opacity: 0;
+  animation: loaderHalo 1.6s var(--ease) forwards 0.3s;
+}
+@keyframes loaderHalo{ to{ opacity: 1; } }
+.loader-inner{
+  display: flex; flex-direction: column; align-items: center;
+  transition: transform 0.7s var(--ease), filter 0.7s var(--ease), opacity 0.7s var(--ease);
+}
+/* Mise au point : le logo passe du flou au net, comme un objectif qui fait le point */
 .loader-logo{
   position: relative;
   width: min(52vw, 260px);
   opacity: 0;
-  transform: scale(0.94);
-  animation: loaderFadeIn 1s var(--ease) forwards 0.1s;
+  filter: blur(14px);
+  transform: scale(1.08);
+  animation: loaderFocus 1s var(--ease) forwards 0.1s;
 }
 .loader-logo img{ width: 100%; height: auto; display: block; }
-@keyframes loaderFadeIn{ to{ opacity: 1; transform: scale(1); } }
+@keyframes loaderFocus{ to{ opacity: 1; filter: blur(0); transform: scale(1); } }
+/* Reflet doré qui balaie uniquement les lettres (masque = le logo) */
+.loader-shine{
+  position: absolute; inset: 0; pointer-events: none;
+  -webkit-mask: url(/images/solor-logo.png?v=2) center / contain no-repeat;
+          mask: url(/images/solor-logo.png?v=2) center / contain no-repeat;
+  background: linear-gradient(110deg, transparent 38%, rgba(207,167,88,0.85) 46%, #fff3d6 50%, rgba(207,167,88,0.85) 54%, transparent 62%);
+  background-size: 250% 100%;
+  background-position: 105% 0;
+  animation: loaderShine 1.2s cubic-bezier(.45,.05,.35,1) forwards 0.7s;
+}
+@keyframes loaderShine{ to{ background-position: -5% 0; } }
+/* Éclat de l'étoile, puis léger scintillement */
+.loader-flare{
+  position: absolute; left: 68.1%; top: 31.9%;
+  width: 46%; aspect-ratio: 1; pointer-events: none;
+  background: radial-gradient(circle, rgba(255,243,214,0.95) 0%, rgba(207,167,88,0.5) 6%, rgba(207,167,88,0.12) 22%, transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translate(-50%,-50%) scale(0) rotate(-45deg);
+  animation: loaderFlare 1s var(--ease) forwards 1.15s, loaderTwinkle 1.4s ease-in-out 2.15s infinite alternate;
+}
+.loader-flare::before, .loader-flare::after{
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,236,190,0.9), transparent);
+  transform: translate(-50%,-50%);
+}
+.loader-flare::after{ transform: translate(-50%,-50%) rotate(90deg); }
+@keyframes loaderFlare{
+  0%{ opacity: 0; transform: translate(-50%,-50%) scale(0) rotate(-45deg); }
+  45%{ opacity: 1; transform: translate(-50%,-50%) scale(1.15) rotate(0deg); }
+  100%{ opacity: 0.75; transform: translate(-50%,-50%) scale(0.8) rotate(0deg); }
+}
+@keyframes loaderTwinkle{ from{ opacity: 0.75; } to{ opacity: 0.35; } }
 #loader.is-hidden{
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
+#loader.is-hidden .loader-inner{ opacity: 0; transform: scale(1.06); filter: blur(6px); }
 @media (prefers-reduced-motion: reduce){
-  .loader-logo{ animation: none; opacity: 1; transform: none; }
+  .loader-logo{ animation: none; opacity: 1; transform: none; filter: none; }
+  .loader-shine, .loader-flare, #loader::before{ display: none; }
 }
 
 /* ===== Nav ===== */
@@ -543,10 +594,44 @@ a.contact-row:hover, a.contact-row:focus-visible{ color: var(--accent); border-b
 .reference{ padding-block: clamp(60px, 9vw, 100px); border-top: 1px solid var(--border); }
 .reference-text{ max-width: 640px; }
 .reference-text h2{ font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-bottom: 14px; }
+.reference-text{ max-width: 760px; }
 .reference-text p{ font-size: 0.94rem; line-height: 1.75; }
+.reference-text strong{ color: var(--fg); font-weight: 500; }
+.reference-points{ list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.reference-points li{ font-size: 0.88rem; line-height: 1.6; color: var(--fg-muted); padding-left: 14px; position: relative; }
+.reference-points li::before{ content: '·'; position: absolute; left: 0; color: var(--accent); }
 .reference-gallery{ display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: clamp(28px, 4vw, 40px); }
-.reference-gallery img{ width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; display: block; }
+.reference-item{ position: relative; display: block; overflow: hidden; border-radius: 4px; cursor: zoom-in; }
+.reference-item img{ width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; display: block; transition: transform 0.6s var(--ease); }
+.reference-item[hidden]{ display: none; }
+.reference-item:hover img{ transform: scale(1.04); }
+.reference-item:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+.reference-more{
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(10,10,9,0.55); color: var(--fg);
+  font-family: var(--font-display); font-style: italic; font-size: 1.15rem;
+}
 @media (max-width: 700px){ .reference-gallery{ grid-template-columns: repeat(2,1fr); } }
+
+/* Visionneuse photo */
+.lightbox{
+  position: fixed; inset: 0; z-index: 1000; background: rgba(10,10,9,0.94);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden; transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
+}
+.lightbox.is-open{ opacity: 1; visibility: visible; }
+.lightbox img{ max-width: min(92vw, 1400px); max-height: 84vh; width: auto; height: auto; border-radius: 4px; display: block; }
+.lightbox button{
+  position: absolute; background: none; border: 1px solid var(--border-strong); color: var(--fg);
+  width: 44px; height: 44px; border-radius: 50%; font-size: 1.2rem; line-height: 1; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: border-color 0.3s var(--ease);
+}
+.lightbox button:hover, .lightbox button:focus-visible{ border-color: var(--accent); outline: none; }
+.lightbox-close{ top: 18px; right: 18px; }
+.lightbox-prev{ left: 18px; top: 50%; transform: translateY(-50%); }
+.lightbox-next{ right: 18px; top: 50%; transform: translateY(-50%); }
+.lightbox-count{ position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 0.75rem; letter-spacing: 0.12em; color: var(--fg-muted); }
+@media (max-width: 700px){ .lightbox-prev, .lightbox-next{ top: auto; bottom: 10px; transform: none; } }
 
 /* ===== Footer ===== */
 footer{
