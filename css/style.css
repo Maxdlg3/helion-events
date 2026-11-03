@@ -540,6 +540,14 @@ a.contact-row:hover, a.contact-row:focus-visible{ color: var(--accent); border-b
 .related-card p{ margin-top: 8px; font-size: 0.86rem; }
 @media (max-width: 780px){ .related-grid{ grid-template-columns: 1fr; } }
 
+.reference{ padding-block: clamp(60px, 9vw, 100px); border-top: 1px solid var(--border); }
+.reference-text{ max-width: 640px; }
+.reference-text h2{ font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-bottom: 14px; }
+.reference-text p{ font-size: 0.94rem; line-height: 1.75; }
+.reference-gallery{ display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: clamp(28px, 4vw, 40px); }
+.reference-gallery img{ width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px; display: block; }
+@media (max-width: 700px){ .reference-gallery{ grid-template-columns: repeat(2,1fr); } }
+
 /* ===== Footer ===== */
 footer{
   padding: 44px 0 calc(36px + env(safe-area-inset-bottom, 0px));
