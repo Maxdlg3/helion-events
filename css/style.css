@@ -616,6 +616,18 @@ a.contact-row:hover, a.contact-row:focus-visible{ color: var(--accent); border-b
 }
 .reel-sound:hover, .reel-sound:focus-visible{ color: var(--accent); border-color: var(--accent); outline: none; }
 .reel-sound svg{ width: 20px; height: 20px; }
+.reel-play{
+  position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; padding: 0 0 0 4px; cursor: pointer;
+  background: rgba(10,10,9,0.5); color: var(--fg); border: 1px solid rgba(255,255,255,0.35);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: opacity 0.35s, transform 0.35s var(--ease), color 0.3s, border-color 0.3s;
+}
+.reel-play svg{ width: 30px; height: 30px; }
+.reel-play:hover, .reel-play:focus-visible{ color: var(--accent); border-color: var(--accent); transform: scale(1.06); outline: none; }
+.reel-player.is-playing .reel-play{ opacity: 0; pointer-events: none; transform: scale(0.9); }
+.reel-player video{ cursor: pointer; }
+.reel-player:not(.is-playing) .reel-sound{ opacity: 0; pointer-events: none; }
 .reel-sound .icon-on{ display: none; }
 .reel-sound[aria-pressed="true"] .icon-on{ display: block; }
 .reel-sound[aria-pressed="true"] .icon-off{ display: none; }

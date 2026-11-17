@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="/images/gal-1.jpg" fetchpriority="high">
-<link rel="stylesheet" href="/css/style.css?v=20261117c">
+<link rel="stylesheet" href="/css/style.css?v=20261117d">
 
 <script type="application/ld+json">
 {
@@ -242,10 +242,13 @@
       </div>
       <div class="reference-reel reveal">
         <div class="reel-player">
-          <video muted loop playsinline preload="none" poster="/images/solor-ritz-reel-poster.jpg" aria-label="Vidéo de la soirée Solor au Ritz Paris : saxophone live et DJ">
+          <video loop playsinline preload="none" poster="/images/solor-ritz-reel-poster.jpg" aria-label="Vidéo de la soirée Solor au Ritz Paris : saxophone live et DJ">
             <source src="/videos/solor-ritz-reel.mp4" type="video/mp4">
           </video>
-          <button class="reel-sound" type="button" aria-label="Activer le son" aria-pressed="false">
+          <button class="reel-play" type="button" aria-label="Lire la vidéo avec le son">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          </button>
+          <button class="reel-sound" type="button" aria-label="Couper le son" aria-pressed="true">
             <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
             <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg>
           </button>
@@ -362,5 +365,5 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script src="/js/main.js?v=20261117c"></script></body>
+<script src="/js/main.js?v=20261117d"></script></body>
 </html>
