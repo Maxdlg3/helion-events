@@ -46,7 +46,7 @@
           setStatus('Merci, votre demande est bien envoyée. On revient vers vous sous 48h.', 'ok');
         })
         .catch(function(){
-          setStatus("L'envoi n'a pas fonctionné. Écrivez-nous directement à contact@helionsax.com.", 'error');
+          setStatus("L'envoi n'a pas fonctionné. Écrivez-nous directement à contact@solorevents.com.", 'error');
         })
         .then(function(){ submitBtn.disabled = false; });
     });
