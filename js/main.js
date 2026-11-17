@@ -152,29 +152,55 @@
     clips.forEach(function(clip){ clipIO.observe(clip); });
   }
 
-  // Reel du Ritz : lecture muette en boucle quand visible, bouton pour le son
+  // Reel du Ritz : lecture automatique AVEC le son si le navigateur l'autorise.
+  // Sinon lecture muette, et le son s'active au premier clic / toucher sur la page.
   document.querySelectorAll('.reel-player').forEach(function(player){
     var video = player.querySelector('video');
     var btn = player.querySelector('.reel-sound');
     if (!video) return;
+    var visible = false;
+    var userMuted = false; // le visiteur a coupé le son lui-même : on respecte
+    var sync = function(){
+      if (!btn) return;
+      var on = !video.muted;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? 'Couper le son' : 'Activer le son');
+    };
+    var playMuted = function(){
+      video.muted = true; sync();
+      video.play().catch(function(){});
+    };
+    var playWithSound = function(){
+      if (userMuted) { playMuted(); return; }
+      video.muted = false; sync();
+      var p = video.play();
+      if (p && p.catch) p.catch(function(){ playMuted(); });
+    };
+    var unlock = function(e){
+      if (player.contains(e.target)) return; // le lecteur gère ses propres clics
+      if (!visible || userMuted || !video.muted) return;
+      playWithSound();
+    };
+    ['pointerdown', 'keydown', 'touchstart'].forEach(function(evt){
+      document.addEventListener(evt, unlock, { passive: true });
+    });
     if ('IntersectionObserver' in window && !reduceMotion) {
       new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
-          if (entry.isIntersecting) video.play().catch(function(){});
+          visible = entry.isIntersecting;
+          if (visible) playWithSound();
           else video.pause();
         });
       }, { threshold: 0.35 }).observe(player);
     }
     if (btn) {
       btn.addEventListener('click', function(){
-        var on = video.muted;
-        video.muted = !on;
-        if (on) video.play().catch(function(){});
-        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-        btn.setAttribute('aria-label', on ? 'Couper le son' : 'Activer le son');
+        if (video.muted) { userMuted = false; playWithSound(); }
+        else { userMuted = true; video.muted = true; sync(); }
       });
     }
     video.addEventListener('click', function(){
+      if (video.muted && !userMuted) { playWithSound(); return; }
       if (video.paused) video.play().catch(function(){}); else video.pause();
     });
   });
