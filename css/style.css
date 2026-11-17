@@ -606,8 +606,19 @@ a.contact-row:hover, a.contact-row:focus-visible{ color: var(--accent); border-b
 .reference-points li::before{ content: '·'; position: absolute; left: 0; color: var(--accent); }
 .reference-head{ display: grid; grid-template-columns: minmax(0,1fr) 340px; gap: clamp(28px, 5vw, 64px); align-items: center; }
 .reference-reel{ width: 100%; max-width: 340px; justify-self: end; }
-.reference-reel .instagram-media{ margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: 340px !important; border-radius: 6px !important; border: 1px solid var(--border) !important; box-shadow: none !important; }
-.reference-reel blockquote.instagram-media > a{ display: flex; align-items: center; justify-content: center; aspect-ratio: 9/16; padding: 24px; text-align: center; color: var(--fg-muted); font-size: 0.85rem; background: rgba(255,255,255,0.03); }
+.reel-player{ position: relative; aspect-ratio: 9/16; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); background: #000; }
+.reel-player video{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.reel-sound{
+  position: absolute; right: 14px; bottom: 14px; width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer;
+  background: rgba(10,10,9,0.55); color: var(--fg); border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: color 0.3s, border-color 0.3s;
+}
+.reel-sound:hover, .reel-sound:focus-visible{ color: var(--accent); border-color: var(--accent); outline: none; }
+.reel-sound svg{ width: 20px; height: 20px; }
+.reel-sound .icon-on{ display: none; }
+.reel-sound[aria-pressed="true"] .icon-on{ display: block; }
+.reel-sound[aria-pressed="true"] .icon-off{ display: none; }
 @media (max-width: 860px){ .reference-head{ grid-template-columns: 1fr; } .reference-reel{ justify-self: center; } }
 .reference-gallery{ display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: clamp(28px, 4vw, 40px); }
 .reference-item{ position: relative; display: block; overflow: hidden; border-radius: 4px; cursor: zoom-in; }

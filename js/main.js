@@ -152,6 +152,33 @@
     clips.forEach(function(clip){ clipIO.observe(clip); });
   }
 
+  // Reel du Ritz : lecture muette en boucle quand visible, bouton pour le son
+  document.querySelectorAll('.reel-player').forEach(function(player){
+    var video = player.querySelector('video');
+    var btn = player.querySelector('.reel-sound');
+    if (!video) return;
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) video.play().catch(function(){});
+          else video.pause();
+        });
+      }, { threshold: 0.35 }).observe(player);
+    }
+    if (btn) {
+      btn.addEventListener('click', function(){
+        var on = video.muted;
+        video.muted = !on;
+        if (on) video.play().catch(function(){});
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('aria-label', on ? 'Couper le son' : 'Activer le son');
+      });
+    }
+    video.addEventListener('click', function(){
+      if (video.paused) video.play().catch(function(){}); else video.pause();
+    });
+  });
+
   // Reference gallery: click a photo to browse all of them full size
   document.querySelectorAll('.reference-gallery').forEach(function(gallery){
     var items = Array.prototype.slice.call(gallery.querySelectorAll('.reference-item'));
