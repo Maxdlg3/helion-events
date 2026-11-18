@@ -677,7 +677,7 @@ footer .footer-social a{ color: var(--fg-muted); text-decoration: none; text-tra
 footer .footer-social a:hover{ color: var(--accent); }
 
 /* Prestations (accueil) + liens du pied de page */
-.prestations-grid{ grid-template-columns: repeat(4,1fr); }
+.prestations-grid{ grid-template-columns: repeat(3,1fr); }
 @media (max-width: 1000px){ .prestations-grid{ grid-template-columns: repeat(2,1fr); } }
 @media (max-width: 560px){ .prestations-grid{ grid-template-columns: 1fr; } }
 .footer-nav{ display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin: 0 auto 14px; padding: 0 16px; }
