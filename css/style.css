@@ -1,4 +1,4 @@
-/* Solor — agence événementielle. Palette committée sombre (identité de marque noire), pas de theming clair/sombre. */
+/* Solor : agence événementielle. Palette committée sombre (identité de marque noire), pas de theming clair/sombre. */
 
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Montserrat:wght@300;400;500;600&display=swap');
 
@@ -706,3 +706,23 @@ footer .footer-social a:hover{ color: var(--accent); }
 .article-author{ margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 0.88rem; color: var(--fg-muted); line-height: 1.7; }
 .article-author strong{ color: var(--fg); font-weight: 500; }
 .article-cta{ margin-top: 36px; }
+
+/* Accueil : prestations en deux rangées titrées */
+.prestations-block{ margin-top: clamp(36px, 5vw, 56px); }
+.prestations-group{ font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 500; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.prestations-block .related-grid{ margin-top: 20px; }
+.prestations-more{ margin-top: clamp(28px, 4vw, 40px); font-size: 0.92rem; color: var(--fg-muted); }
+.prestations-more a{ color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Journal : catégories et liens croisés */
+.journal-card h3{ font-size: clamp(1.2rem, 2vw, 1.5rem); margin: 10px 0 8px; }
+.journal-cat{ display: grid; gap: 18px; }
+.journal-cat + .journal-cat{ margin-top: clamp(28px, 4vw, 44px); }
+.journal-cat h2{ font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.journal-cat-intro{ font-size: 0.92rem; line-height: 1.7; color: var(--fg-muted); margin-top: -8px; }
+.journal-cat-intro a{ color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.journal-links{ padding: clamp(56px, 8vw, 96px) 0 0; }
+.article-related{ margin-top: 48px; padding: 24px 28px; border: 1px solid var(--border); border-radius: 4px; }
+.article-related ul{ margin: 12px 0 0; padding-left: 18px; }
+.article-related li{ margin: 6px 0; }
+.detail-card .check-list{ margin-bottom: 24px; }
