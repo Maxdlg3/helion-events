@@ -358,8 +358,7 @@ p{ margin: 0; color: var(--fg-muted); }
   content: '';
   position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(10,10,9,0.94) 0%, rgba(10,10,9,0.72) 45%, rgba(10,10,9,0.5) 100%),
-    linear-gradient(0deg, rgba(10,10,9,0.5), rgba(10,10,9,0.5));
+    linear-gradient(90deg, rgba(10,10,9,0.82) 0%, rgba(10,10,9,0.5) 45%, rgba(10,10,9,0.15) 100%);
 }
 .signature .container{ position: relative; z-index: 1; max-width: 980px; }
 .signature blockquote{
