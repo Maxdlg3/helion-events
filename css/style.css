@@ -698,6 +698,9 @@ footer .footer-social a:hover{ color: var(--accent); }
 .article-body h3{ font-size: 1.15rem; margin-top: 30px; color: var(--fg); }
 .article-body strong{ color: var(--fg); font-weight: 500; }
 .article-body a{ color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.article-body a.btn{ text-decoration: none; }
+.article-body a.btn-solid{ color: #0a0a09; }
+.article-body a.btn-solid:hover, .article-body a.btn-solid:focus-visible{ color: var(--fg); }
 .article-body ul{ margin: 16px 0 0; padding-left: 20px; color: var(--fg-muted); line-height: 1.8; }
 .article-body blockquote{ margin: 32px 0 0; padding: 4px 0 4px 22px; border-left: 2px solid var(--accent); font-family: var(--font-display); font-style: italic; font-size: 1.25rem; line-height: 1.55; color: var(--fg); }
 .article-author{ margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 0.88rem; color: var(--fg-muted); line-height: 1.7; }
