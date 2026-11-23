@@ -36,17 +36,18 @@
       var name = contactForm.name.value.trim();
       var type = contactForm.type.value;
       var data = new FormData(contactForm);
-      data.append('_subject', 'Demande Solor : ' + type + (name ? ' - ' + name : ''));
+      var isEn = document.documentElement.lang === 'en';
+      data.append('_subject', (isEn ? 'Demande Solor (EN) : ' : 'Demande Solor : ') + type + (name ? ' - ' + name : ''));
       submitBtn.disabled = true;
-      setStatus('Envoi en cours...', 'pending');
+      setStatus(isEn ? 'Sending...' : 'Envoi en cours...', 'pending');
       fetch(contactForm.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
         .then(function(res){
           if (!res.ok) throw new Error('send failed');
           contactForm.reset();
-          setStatus('Merci, votre demande est bien envoyée. On revient vers vous sous 48h.', 'ok');
+          setStatus(isEn ? 'Thank you, your request has been sent. We will reply within 48 hours.' : 'Merci, votre demande est bien envoyée. On revient vers vous sous 48h.', 'ok');
         })
         .catch(function(){
-          setStatus("L'envoi n'a pas fonctionné. Écrivez-nous directement à contact@solorevents.com.", 'error');
+          setStatus(isEn ? 'Sending failed. Please email us at contact@solorevents.com.' : "L'envoi n'a pas fonctionné. Écrivez-nous directement à contact@solorevents.com.", 'error');
         })
         .then(function(){ submitBtn.disabled = false; });
     });
